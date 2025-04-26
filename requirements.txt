@@ -1,0 +1,8 @@
+discord.py
+python-dotenv
+pandas
+numpy
+xgboost
+scikit-learn
+joblib
+schedule

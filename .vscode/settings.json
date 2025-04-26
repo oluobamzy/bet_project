@@ -1,0 +1,9 @@
+{
+  "python.pythonPath": "venv/bin/python",  // Linux/Mac
+  // "python.pythonPath": "venv\\Scripts\\python.exe",  // Windows
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.formatting.provider": "black",
+  "python.analysis.typeCheckingMode": "basic",
+  "files.autoSave": "afterDelay"
+}
