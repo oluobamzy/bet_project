@@ -8,7 +8,7 @@ from datetime import datetime
 from utils.api_fetcher import get_fixtures, fetch_odds
 
 # --- Load historical match data
-DATA_PATH = Path("data/clean_matches.csv")
+DATA_PATH = Path("data/processed/clean_matches.csv")
 
 try:
     df_matches = pd.read_csv(DATA_PATH, parse_dates=["date"])
