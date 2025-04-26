@@ -4,13 +4,23 @@ import pickle
 import numpy as np
 from fetch_data import fetch_fixture_inputs
 import pandas as pd
+import os
+import joblib
+# Auto-detect the model file
+MODELS_FOLDER = "models"
 
-# --- Load trained model
-MODEL_PATH = "models/model.pkl"
+model_files = [f for f in os.listdir(MODELS_FOLDER) if f.endswith(".pkl")]
 
+if not model_files:
+    raise FileNotFoundError("❌ No model file (.pkl) found in models/ folder!")
+
+# You could pick the first one or apply sorting if you have many
+MODEL_PATH = os.path.join(MODELS_FOLDER, model_files[0])
+
+# Now load the model
 try:
     with open(MODEL_PATH, "rb") as f:
-        model = pickle.load(f)
+        model = joblib.load(f)
 except Exception as e:
     raise FileNotFoundError(f"❌ Failed to load model: {e}")
 
