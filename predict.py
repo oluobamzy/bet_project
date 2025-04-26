@@ -49,6 +49,22 @@ def predict_bet(league: str = "EPL") -> str:
     return "\n".join(results)
 
 # --- Optionally, manual prediction for a custom match
+def predict_bet_tomorrow(league_name="EPL"):
+    inputs = fetch_fixture_inputs(league_name=league_name, for_tomorrow=True)
+    if not inputs:
+        return "No fixtures for tomorrow!"
+
+    predictions = []
+    for fixture in inputs:
+        features = np.array(fixture['features']).reshape(1, -1)
+        pred = model.predict(features)
+        pred_label = pred[0]
+
+        outcome = "Home Win" if pred_label == 0 else "Draw" if pred_label == 1 else "Away Win"
+        predictions.append(f"{fixture['home']} vs {fixture['away']}: {outcome}")
+
+    return "\n".join(predictions)
+
 def predict_single_match(home_team: str, away_team: str, model_input: list) -> str:
     """Predict a single match given pre-built model input."""
     try:
