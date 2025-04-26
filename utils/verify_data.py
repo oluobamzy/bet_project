@@ -1,4 +1,5 @@
 # utils/verify_data.py
+# is util working
 import pandas as pd
 import logging
 import os
@@ -92,3 +93,5 @@ if __name__ == "__main__":
     except Exception as e:
         logging.critical(f"🔴 Critical failure: {str(e)}")
         exit(1)
+
+        
