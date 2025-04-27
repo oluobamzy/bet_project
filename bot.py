@@ -150,7 +150,9 @@ async def help_command(interaction: discord.Interaction):
     embed.add_field(name="`/leagues`", value="List all supported leagues.", inline=False)
     embed.add_field(name="`/help`", value="Show this help message.", inline=False)
 
+    # Send directly without deferring (since it is quick)
     await interaction.response.send_message(embed=embed, ephemeral=True)
+
 
 @bot.tree.command(name="subscribe", description="Subscribe to daily predictions.")
 async def subscribe(interaction: discord.Interaction):
