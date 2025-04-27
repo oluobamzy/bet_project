@@ -1,11 +1,10 @@
-# bot.py
-
 import os
 import asyncio
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 import schedule
+from discord import app_commands
 from predict import predict_bet, predict_bet_tomorrow
 
 # --- Load environment variables
@@ -54,6 +53,15 @@ intents.guilds = True  # Needed to access guild info for slash commands
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+# --- Autocomplete function for leagues
+async def autocomplete_leagues(interaction: discord.Interaction, current: str):
+    current = current.lower()
+    return [
+        app_commands.Choice(name=name, value=key)
+        for key, name in SUPPORTED_LEAGUES.items()
+        if current in key.lower() or current in name.lower()
+    ][:25]  # Discord allows max 25 choices
+
 # --- Background task
 async def send_daily_predictions():
     await bot.wait_until_ready()
@@ -98,36 +106,39 @@ async def on_ready():
     except Exception as e:
         print(f"❌ Failed syncing commands: {e}")
 
-# --- Commands
-@bot.command(name="bet")
-async def bet(ctx, league: str = "EPL"):
-    """Predict match outcomes for a given league."""
+# --- Slash Commands
+@bot.tree.command(name="bet", description="Get match predictions for a specific league.")
+@app_commands.describe(league="Choose a league")
+@app_commands.autocomplete(league=autocomplete_leagues)
+async def bet_command(interaction: discord.Interaction, league: str = "EPL"):
+    """Get match predictions for a given league."""
     league = league.strip()
 
-    await ctx.send(f"🔄 Fetching predictions for **{league}**...", delete_after=3)
-
     if league not in SUPPORTED_LEAGUES:
-        await ctx.send(f"⚠️ Unknown league `{league}`. Use `/leagues` to see supported leagues.", delete_after=8)
+        await interaction.response.send_message(f"⚠️ Unknown league `{league}`. Use `/leagues` to view supported leagues.", ephemeral=True)
         return
+
+    await interaction.response.defer(thinking=True)
 
     try:
         prediction = predict_bet(league)
         if not prediction.strip():
-            await ctx.send("❌ No prediction results were generated.", delete_after=8)
+            await interaction.followup.send("❌ No predictions generated.", ephemeral=True)
         else:
-            await ctx.send(f"🔮 **Predictions for {SUPPORTED_LEAGUES[league]}:**\n{prediction}", delete_after=600)
+            await interaction.followup.send(
+                f"🔮 **Predictions for {SUPPORTED_LEAGUES[league]}:**\n{prediction}"
+            )
     except Exception as e:
-        await ctx.send(f"❌ Prediction failed: {e}", delete_after=10)
+        await interaction.followup.send(f"❌ Prediction failed: {e}", ephemeral=True)
 
-@bot.command(name="leagues")
-async def leagues(ctx):
-    """Show available leagues."""
+@bot.tree.command(name="leagues", description="Show all available leagues.")
+async def leagues_command(interaction: discord.Interaction):
+    """List all supported leagues."""
     message = "**🏆 Available Leagues:**\n" + "\n".join(
         f"- `{key}`: {name}" for key, name in SUPPORTED_LEAGUES.items()
     )
-    await ctx.send(message, delete_after=30)
+    await interaction.response.send_message(message, ephemeral=True)
 
-# --- Slash Commands
 @bot.tree.command(name="help", description="View all available commands.")
 async def help_command(interaction: discord.Interaction):
     embed = discord.Embed(
@@ -141,6 +152,32 @@ async def help_command(interaction: discord.Interaction):
 
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
+@bot.tree.command(name="subscribe", description="Subscribe to daily predictions.")
+async def subscribe(interaction: discord.Interaction):
+    """Subscribe to daily predictions."""
+    user_id = interaction.user.id
+    # In a real deployment, you would save this info in a database or file
+    # Here, we're simulating it with a list.
+    if user_id not in subscribed_users:
+        subscribed_users.append(user_id)
+        await interaction.response.send_message("✅ You have subscribed to daily predictions!", ephemeral=True)
+    else:
+        await interaction.response.send_message("⚠️ You're already subscribed.", ephemeral=True)
+
+@bot.tree.command(name="unsubscribe", description="Unsubscribe from daily predictions.")
+async def unsubscribe(interaction: discord.Interaction):
+    """Unsubscribe from daily predictions."""
+    user_id = interaction.user.id
+    # In a real deployment, you would save this info in a database or file
+    if user_id in subscribed_users:
+        subscribed_users.remove(user_id)
+        await interaction.response.send_message("✅ You have unsubscribed from daily predictions.", ephemeral=True)
+    else:
+        await interaction.response.send_message("⚠️ You are not subscribed.", ephemeral=True)
+
 # --- Run
 if __name__ == "__main__":
+    # A placeholder for subscribed users, ideally this would be in a database or a persistent file
+    subscribed_users = []
+
     bot.run(TOKEN)
