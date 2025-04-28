@@ -16,14 +16,11 @@ if not TOKEN:
 
 # --- Supported leagues
 SUPPORTED_LEAGUES = {
-    # Top 5 major leagues
     "EPL": "English Premier League",
     "LaLiga": "Spanish La Liga",
     "SerieA": "Italian Serie A",
     "Bundesliga": "German Bundesliga",
     "Ligue1": "French Ligue 1",
-
-    # Other top-tier European leagues (A-Z)
     "PrimeiraLiga": "Portuguese Primeira Liga",
     "Eredivisie": "Dutch Eredivisie",
     "ProLeague": "Belgian Pro League",

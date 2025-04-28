@@ -1,12 +1,9 @@
-# fetch_data.py
-
 import pandas as pd
 import numpy as np
 from pathlib import Path
 from typing import Optional, List, Dict
-from datetime import datetime
+from datetime import datetime, timedelta
 from utils.api_fetcher import get_fixtures, fetch_odds
-from datetime import timedelta
 
 # --- Load historical match data
 DATA_PATH = Path("data/processed/clean_matches.csv")
@@ -98,9 +95,7 @@ def get_live_odds(home_team: str, away_team: str) -> Dict[str, float]:
         "away_odds": away_odds,
     }
 
-
 # --- MAIN function to build input features
-
 
 def fetch_fixture_inputs(league_name: str = "EPL", for_tomorrow: bool = False) -> List[Dict]:
     fixtures = get_fixtures()
@@ -111,22 +106,26 @@ def fetch_fixture_inputs(league_name: str = "EPL", for_tomorrow: bool = False) -
     tomorrow = now + timedelta(days=1)
     tomorrow_date = tomorrow.date()
 
+    # --- Loop through fixtures and collect data
     for fx in fixtures:
         try:
             home = fx['teams']['home']['name']
             away = fx['teams']['away']['name']
             match_date = pd.to_datetime(fx['fixture']['date']).date()
 
+            # Filter based on today or tomorrow
             if for_tomorrow and match_date != tomorrow_date:
                 continue
             if not for_tomorrow and match_date != now.date():
                 continue
 
+            # Calculate relevant stats
             home_form = get_form(home, pd.to_datetime(match_date))
             away_form = get_form(away, pd.to_datetime(match_date))
             h2h = get_h2h_rate(home, away, pd.to_datetime(match_date))
             odds = get_live_odds(home, away) or {}
 
+            # Collect features
             features = [
                 odds.get("home_odds", 2.0),
                 odds.get("away_odds", 2.0),
@@ -146,4 +145,3 @@ def fetch_fixture_inputs(league_name: str = "EPL", for_tomorrow: bool = False) -
             print(f"⚠️ Skipped fixture {fx.get('fixture', {}).get('id')}: {e}")
 
     return inputs
-

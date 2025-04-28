@@ -1,23 +1,21 @@
 # predict.py
 
-import pickle
-import numpy as np
-from fetch_data import fetch_fixture_inputs
-import pandas as pd
 import os
+import numpy as np
+import pandas as pd
 import joblib
+from fetch_data import fetch_fixture_inputs
+
 # Auto-detect the model file
 MODELS_FOLDER = "models"
-
 model_files = [f for f in os.listdir(MODELS_FOLDER) if f.endswith(".pkl")]
 
 if not model_files:
     raise FileNotFoundError("❌ No model file (.pkl) found in models/ folder!")
 
-# You could pick the first one or apply sorting if you have many
 MODEL_PATH = os.path.join(MODELS_FOLDER, model_files[0])
 
-# Now load the model
+# Load the model
 try:
     with open(MODEL_PATH, "rb") as f:
         model = joblib.load(f)
@@ -26,11 +24,11 @@ except Exception as e:
 
 # --- Predict upcoming fixtures
 def predict_bet(league: str = "EPL") -> str:
-    """Make predictions for upcoming fixtures in the given league."""
-    fixtures = fetch_fixture_inputs(league)
+    """Predict matches scheduled for TODAY for a given league."""
+    fixtures = fetch_fixture_inputs(league_name=league, for_tomorrow=False)
 
     if not fixtures:
-        return "❌ No fixtures found."
+        return "❌ No fixtures found for today."
 
     results = []
     for fixture in fixtures:
@@ -48,20 +46,26 @@ def predict_bet(league: str = "EPL") -> str:
 
     return "\n".join(results)
 
-# --- Optionally, manual prediction for a custom match
-def predict_bet_tomorrow(league_name="EPL"):
-    inputs = fetch_fixture_inputs(league_name=league_name, for_tomorrow=True)
-    if not inputs:
-        return "No fixtures for tomorrow!"
+def predict_bet_tomorrow(league_name="EPL") -> str:
+    """Predict matches scheduled for TOMORROW for a given league."""
+    fixtures = fetch_fixture_inputs(league_name=league_name, for_tomorrow=True)
+
+    if not fixtures:
+        return "❌ No fixtures found for tomorrow."
 
     predictions = []
-    for fixture in inputs:
-        features = np.array(fixture['features']).reshape(1, -1)
-        pred = model.predict(features)
-        pred_label = pred[0]
+    for fixture in fixtures:
+        home = fixture["home"]
+        away = fixture["away"]
+        features = fixture["features"]
 
-        outcome = "Home Win" if pred_label == 0 else "Draw" if pred_label == 1 else "Away Win"
-        predictions.append(f"{fixture['home']} vs {fixture['away']}: {outcome}")
+        try:
+            input_array = np.array(features).reshape(1, -1)
+            pred = model.predict(input_array)[0]
+            outcome = ["🏠 Home Win", "🤝 Draw", "🚀 Away Win"][pred]
+            predictions.append(f"**{home} vs {away}: {outcome}**")
+        except Exception as e:
+            predictions.append(f"**{home} vs {away}: ❌ Prediction Error ({e})**")
 
     return "\n".join(predictions)
 
