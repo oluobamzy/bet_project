@@ -1,4 +1,5 @@
 # fetch_latest_data.py
+# -*- coding: utf-8 -*-
 
 import requests
 import os

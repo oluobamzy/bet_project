@@ -1,7 +1,7 @@
 # config.py
 CONFIG = {
     "leagues": ["E0", "E1"],
-    "season": "2324"
+    "season": "2425"
 }
 
 # In verify_data.py
