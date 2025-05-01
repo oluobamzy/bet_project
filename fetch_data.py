@@ -5,6 +5,7 @@ from typing import Optional, List, Dict
 from datetime import datetime, timedelta
 from utils.api_fetcher import get_fixtures, fetch_odds
 
+
 # --- Load historical match data
 DATA_PATH = Path("data/processed/clean_matches.csv")
 
@@ -97,35 +98,35 @@ def get_live_odds(home_team: str, away_team: str) -> Dict[str, float]:
 
 # --- MAIN function to build input features
 
+
 def fetch_fixture_inputs(league_name: str = "EPL", for_tomorrow: bool = False) -> List[Dict]:
     fixtures = get_fixtures()
     inputs = []
     now = pd.Timestamp.now()
 
-    # If for_tomorrow = True, adjust the date filter
+    # Determine tomorrow's date for filtering
     tomorrow = now + timedelta(days=1)
     tomorrow_date = tomorrow.date()
 
-    # --- Loop through fixtures and collect data
     for fx in fixtures:
         try:
             home = fx['teams']['home']['name']
             away = fx['teams']['away']['name']
-            match_date = pd.to_datetime(fx['fixture']['date']).date()
+            match_datetime = pd.to_datetime(fx['fixture']['date'])
+            match_date = match_datetime.date()
 
-            # Filter based on today or tomorrow
-            if for_tomorrow and match_date != tomorrow_date:
-                continue
-            if not for_tomorrow and match_date != now.date():
+            # Unified date filtering logic
+            target_date = tomorrow_date if for_tomorrow else now.date()
+            if match_date != target_date:
                 continue
 
-            # Calculate relevant stats
-            home_form = get_form(home, pd.to_datetime(match_date))
-            away_form = get_form(away, pd.to_datetime(match_date))
-            h2h = get_h2h_rate(home, away, pd.to_datetime(match_date))
+            # Compute relevant stats
+            home_form = get_form(home, match_datetime)
+            away_form = get_form(away, match_datetime)
+            h2h = get_h2h_rate(home, away, match_datetime)
             odds = get_live_odds(home, away) or {}
 
-            # Collect features
+            # Construct features
             features = [
                 odds.get("home_odds", 2.0),
                 odds.get("away_odds", 2.0),
@@ -145,3 +146,4 @@ def fetch_fixture_inputs(league_name: str = "EPL", for_tomorrow: bool = False) -
             print(f"⚠️ Skipped fixture {fx.get('fixture', {}).get('id')}: {e}")
 
     return inputs
+
