@@ -3,7 +3,7 @@ import numpy as np
 from pathlib import Path
 from typing import Optional, List, Dict
 from datetime import datetime, timedelta
-from utils.api_fetcher import get_fixtures, fetch_odds
+from cron.fetch_latest_data import fetch_fixtures, fetch_odds
 
 
 # --- Load historical match data
@@ -100,7 +100,7 @@ def get_live_odds(home_team: str, away_team: str) -> Dict[str, float]:
 
 
 def fetch_fixture_inputs(league_name: str = "EPL", for_tomorrow: bool = False) -> List[Dict]:
-    fixtures = get_fixtures()
+    fixtures = fetch_fixtures()
     inputs = []
     now = pd.Timestamp.now()
 

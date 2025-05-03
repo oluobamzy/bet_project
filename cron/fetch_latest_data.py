@@ -44,8 +44,15 @@ SPORTS_MAPPING = {
     "PremierLeagueIL": "soccer_israel_ligat_haal",
 }
 
+
+def is_cache_valid(filepath: str, max_age_seconds: int = 86400) -> bool:
+    if not os.path.exists(filepath):
+        return False
+    file_mtime = os.path.getmtime(filepath)
+    return (time.time() - file_mtime) < max_age_seconds
+
+
 def retry_request(url, headers=None, params=None, retries=3, delay=2):
-    """Retry logic for flaky APIs"""
     for attempt in range(retries):
         try:
             response = requests.get(url, headers=headers, params=params, timeout=10)
@@ -56,14 +63,34 @@ def retry_request(url, headers=None, params=None, retries=3, delay=2):
             time.sleep(delay)
     raise Exception(f"❌ All {retries} attempts failed for {url}")
 
+
+def get_cached_active_leagues(cache_path="cache/active_leagues.json", max_age_hours=6):
+    if is_cache_valid(cache_path, max_age_seconds=max_age_hours * 3600):
+        with open(cache_path, "r") as f:
+            cached = json.load(f)
+            print("🛡️ Using cached active leagues.")
+            return set(cached["league_ids"])
+    return None
+
+
+def cache_active_leagues(league_ids, cache_path="cache/active_leagues.json"):
+    with open(cache_path, "w") as f:
+        json.dump({
+            "timestamp": datetime.now().isoformat(),
+            "league_ids": list(league_ids)
+        }, f)
+
+
 def fetch_active_leagues() -> set:
-    """Fetch currently active league IDs from API-Football."""
+    cache_path = "cache/active_leagues.json"
+    cached = get_cached_active_leagues(cache_path=cache_path)
+
     api_key = os.getenv("API_FOOTBALL_KEY")
     if not api_key:
         raise ValueError("❌ Missing API_FOOTBALL_KEY in .env")
 
     try:
-        print("Fetching active leagues...")
+        print("📡 Fetching active leagues from API-Football...")
         response = retry_request(
             "https://api-football-v1.p.rapidapi.com/v3/leagues",
             headers={
@@ -75,106 +102,130 @@ def fetch_active_leagues() -> set:
         active_leagues = set()
 
         for league_info in leagues:
-            season_info = league_info.get("seasons", [])
-            for season in season_info:
+            for season in league_info.get("seasons", []):
                 if season.get("year") == datetime.now().year and season.get("coverage", {}).get("fixtures", {}).get("events", False):
                     active_leagues.add(league_info["league"]["id"])
 
         print(f"✅ Found {len(active_leagues)} active leagues.")
+        cache_active_leagues(active_leagues, cache_path=cache_path)
         return active_leagues
 
     except Exception as e:
         print(f"⚠️ Error fetching active leagues: {e}")
-        return set()
+        if cached:
+            print("⚠️ Using cached active leagues as fallback due to API failure.")
+            return cached
+        else:
+            print("❌ No cached active leagues available.")
+            return set()
 
-def fetch_odds() -> None:
-    """Fetch and save odds for all supported leagues."""
+
+def fetch_odds():
     odds_api_key = os.getenv("ODDS_API_KEY")
     if not odds_api_key:
         raise ValueError("❌ Missing ODDS_API_KEY in .env")
 
     cache_path = Path("data/live/latest_odds.json")
-    fresh = False
 
-    # Check if cache exists and is fresh
     if cache_path.exists():
         with open(cache_path, "r") as f:
             cached = json.load(f)
             timestamp = datetime.fromisoformat(cached.get("timestamp", datetime.min.isoformat()))
             if datetime.now() - timestamp < timedelta(hours=12):
                 print("🛡️ Using fresh cached odds.")
-                fresh = True
-            else:
-                print("🔄 Cached odds expired (>12h), fetching new odds...")
-    else:
-        print("🔎 No cached odds found, fetching new odds...")
+                return cached.get("data", {})
 
-    if fresh:
-        return
+    try:
+        print("📡 Validating available sports...")
+        response = retry_request(
+            "https://api.the-odds-api.com/v4/sports",
+            params={"api_key": odds_api_key}
+        )
+        available_sports = {sport["key"] for sport in response.json()}
 
-    all_odds = {}
+        valid_mapping = {
+            code: key for code, key in SPORTS_MAPPING.items()
+            if key in available_sports
+        }
 
-    for league_code, sport_key in SPORTS_MAPPING.items():
-        try:
-            print(f"Fetching odds for: {league_code} ({sport_key})")
-            response = retry_request(
-                f"https://api.the-odds-api.com/v4/sports/{sport_key}/odds",
-                params={
-                    "api_key": odds_api_key,
-                    "regions": "eu",
-                    "markets": "h2h",
-                    "oddsFormat": "decimal"
-                }
-            )
-            if response.status_code == 200:
-                all_odds[league_code] = response.json()
-            elif response.status_code == 404:
-                print(f"⚠️ No odds available for {league_code} (skipping)")
-            else:
-                print(f"⚠️ Failed to fetch odds for {league_code}: {response.status_code} {response.text}")
+        print(f"✅ Found {len(valid_mapping)} valid leagues out of {len(SPORTS_MAPPING)}.")
 
-            time.sleep(1)  # avoid rate limits
+        all_odds = {}
+        failed_leagues = []
 
-        except Exception as e:
-            print(f"⚠️ Error fetching {league_code}: {e}")
+        for league_code, sport_key in valid_mapping.items():
+            try:
+                print(f"Fetching odds for: {league_code} ({sport_key})")
+                odds_response = retry_request(
+                    f"https://api.the-odds-api.com/v4/sports/{sport_key}/odds",
+                    params={
+                        "api_key": odds_api_key,
+                        "regions": "eu",
+                        "markets": "h2h",
+                        "oddsFormat": "decimal"
+                    }
+                )
+                if odds_response.status_code == 200:
+                    all_odds[league_code] = odds_response.json()
+                else:
+                    print(f"⚠️ No odds for {league_code} (status: {odds_response.status_code})")
+                    failed_leagues.append(league_code)
 
-    if all_odds:
-        timestamp = datetime.now().isoformat()
-        with open("data/live/latest_odds.json", "w") as f:
-            json.dump({"timestamp": timestamp, "data": all_odds}, f, indent=2)
-        print("✅ All odds saved to data/live/latest_odds.json")
-    else:
-        print("⚠️ No odds data fetched. (Check API keys?)")
+                time.sleep(1)
 
-def fetch_fixtures(league_id: int = 39) -> None:
-    """Fetch and save fixtures only for active leagues."""
+            except Exception as e:
+                print(f"⚠️ Failed: {league_code} — {e}")
+                failed_leagues.append(league_code)
+
+        with open(cache_path, "w") as f:
+            json.dump({"timestamp": datetime.now().isoformat(), "data": all_odds}, f, indent=2)
+        print(f"✅ Saved odds. Failed leagues: {failed_leagues if failed_leagues else 'None'}")
+        return all_odds
+
+    except Exception as e:
+        print(f"❌ Failed to fetch sports or odds: {e}")
+        return {}
+
+
+def fetch_fixtures():
     api_key = os.getenv("API_FOOTBALL_KEY")
     if not api_key:
         raise ValueError("❌ Missing API_FOOTBALL_KEY in .env")
 
     active_leagues = fetch_active_leagues()
-    if league_id not in active_leagues:
-        print(f"⚠️ League ID {league_id} is not active currently. Skipping fixtures fetch.")
-        return
+    if not active_leagues:
+        print("⚠️ No active leagues found.")
+        return []
 
-    try:
-        print(f"Fetching fixtures for league ID {league_id}...")
-        response = retry_request(
-            "https://api-football-v1.p.rapidapi.com/v3/fixtures",
-            headers={
-                "x-rapidapi-key": api_key,
-                "x-rapidapi-host": "api-football-v1.p.rapidapi.com"
-            },
-            params={"league": league_id, "season": datetime.now().year}
-        )
-        with open("cache/fixtures.json", "w") as f:
-            json.dump(response.json(), f, indent=2)
-        print("✅ Fixtures saved to cache/fixtures.json")
+    for league_id in active_leagues:
+        try:
+            print(f"Fetching fixtures for league ID {league_id}...")
+            response = retry_request(
+                "https://api-football-v1.p.rapidapi.com/v3/fixtures",
+                headers={
+                    "x-rapidapi-key": api_key,
+                    "x-rapidapi-host": "api-football-v1.p.rapidapi.com"
+                },
+                params={"league": league_id, "season": datetime.now().year}
+            )
+            with open(f"cache/fixtures_{league_id}.json", "w") as f:
+                json.dump(response.json(), f, indent=2)
+            time.sleep(1)
 
-    except Exception as e:
-        print(f"⚠️ Error fetching fixtures: {e}")
-        if Path("cache/fixtures.json").exists():
-            print("ℹ️ Using cached fixtures.")
+        except Exception as e:
+            print(f"⚠️ Failed to fetch fixtures for {league_id}: {e}")
+
+    # ✅ Return all fixtures from saved files
+    all_fixtures = []
+    for league_id in active_leagues:
+        cache_path = f"cache/fixtures_{league_id}.json"
+        if os.path.exists(cache_path):
+            with open(cache_path, "r") as f:
+                league_data = json.load(f)
+                all_fixtures.extend(league_data.get("response", []))
+
+    return all_fixtures
+
 
 if __name__ == "__main__":
     fetch_odds()

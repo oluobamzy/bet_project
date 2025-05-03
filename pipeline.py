@@ -3,7 +3,7 @@ import time
 import os
 import logging
 from datetime import datetime
-from utils.api_fetcher import fetch_odds
+from cron.fetch_latest_data import fetch_odds
 from utils.data_cleaner import process_historical
 
 # Configure logging
