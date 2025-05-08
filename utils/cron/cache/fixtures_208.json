@@ -1,0 +1,297 @@
+{
+  "get": "fixtures",
+  "parameters": {
+    "league": "208",
+    "season": "2024",
+    "from": "2025-05-08",
+    "to": "2025-05-09"
+  },
+  "errors": [],
+  "results": 4,
+  "paging": {
+    "current": 1,
+    "total": 1
+  },
+  "response": [
+    {
+      "fixture": {
+        "id": 1325438,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-09T17:30:00+00:00",
+        "timestamp": 1746811800,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 1538,
+          "name": "Stade de la Maladi\u00e8re",
+          "city": "Neuch\u00e2tel"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 208,
+        "name": "Challenge League",
+        "country": "Switzerland",
+        "logo": "https://media.api-sports.io/football/leagues/208.png",
+        "flag": "https://media.api-sports.io/flags/ch.svg",
+        "season": 2024,
+        "round": "Regular Season - 34",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 1015,
+          "name": "Neuchatel Xamax FC",
+          "logo": "https://media.api-sports.io/football/teams/1015.png",
+          "winner": null
+        },
+        "away": {
+          "id": 6654,
+          "name": "\u00c9toile Carouge",
+          "logo": "https://media.api-sports.io/football/teams/6654.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1325439,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-09T17:30:00+00:00",
+        "timestamp": 1746811800,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": null,
+          "name": "FCS Arena",
+          "city": "Schaffhausen"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 208,
+        "name": "Challenge League",
+        "country": "Switzerland",
+        "logo": "https://media.api-sports.io/football/leagues/208.png",
+        "flag": "https://media.api-sports.io/flags/ch.svg",
+        "season": 2024,
+        "round": "Regular Season - 34",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 2182,
+          "name": "FC Schaffhausen",
+          "logo": "https://media.api-sports.io/football/teams/2182.png",
+          "winner": null
+        },
+        "away": {
+          "id": 6646,
+          "name": "Stade Nyonnais",
+          "logo": "https://media.api-sports.io/football/teams/6646.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1325440,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-09T17:30:00+00:00",
+        "timestamp": 1746811800,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 1535,
+          "name": "Stade Olympique de la Pontaise",
+          "city": "Lausanne"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 208,
+        "name": "Challenge League",
+        "country": "Switzerland",
+        "logo": "https://media.api-sports.io/football/leagues/208.png",
+        "flag": "https://media.api-sports.io/flags/ch.svg",
+        "season": 2024,
+        "round": "Regular Season - 34",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 4269,
+          "name": "Stade Lausanne-Ouchy",
+          "logo": "https://media.api-sports.io/football/teams/4269.png",
+          "winner": null
+        },
+        "away": {
+          "id": 6616,
+          "name": "Bellinzona",
+          "logo": "https://media.api-sports.io/football/teams/6616.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1325437,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-09T18:15:00+00:00",
+        "timestamp": 1746814500,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 1531,
+          "name": "Stadion Br\u00fcgglifeld",
+          "city": "Aarau"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 208,
+        "name": "Challenge League",
+        "country": "Switzerland",
+        "logo": "https://media.api-sports.io/football/leagues/208.png",
+        "flag": "https://media.api-sports.io/flags/ch.svg",
+        "season": 2024,
+        "round": "Regular Season - 34",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 2177,
+          "name": "FC Aarau",
+          "logo": "https://media.api-sports.io/football/teams/2177.png",
+          "winner": null
+        },
+        "away": {
+          "id": 2179,
+          "name": "FC WIL 1900",
+          "logo": "https://media.api-sports.io/football/teams/2179.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    }
+  ]
+}

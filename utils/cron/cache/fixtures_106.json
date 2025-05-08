@@ -1,0 +1,157 @@
+{
+  "get": "fixtures",
+  "parameters": {
+    "league": "106",
+    "season": "2024",
+    "from": "2025-05-08",
+    "to": "2025-05-09"
+  },
+  "errors": [],
+  "results": 2,
+  "paging": {
+    "current": 1,
+    "total": 1
+  },
+  "response": [
+    {
+      "fixture": {
+        "id": 1203234,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-09T16:00:00+00:00",
+        "timestamp": 1746806400,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": null,
+          "name": "Motor Lublin Arena",
+          "city": "Lublin"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 106,
+        "name": "Ekstraklasa",
+        "country": "Poland",
+        "logo": "https://media.api-sports.io/football/leagues/106.png",
+        "flag": "https://media.api-sports.io/flags/pl.svg",
+        "season": 2024,
+        "round": "Regular Season - 32",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 14562,
+          "name": "Motor Lublin",
+          "logo": "https://media.api-sports.io/football/teams/14562.png",
+          "winner": null
+        },
+        "away": {
+          "id": 349,
+          "name": "Piast Gliwice",
+          "logo": "https://media.api-sports.io/football/teams/349.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1203230,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-09T18:30:00+00:00",
+        "timestamp": 1746815400,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 18625,
+          "name": "Stadion im. Ernesta Pohla",
+          "city": "Zabrze"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 106,
+        "name": "Ekstraklasa",
+        "country": "Poland",
+        "logo": "https://media.api-sports.io/football/leagues/106.png",
+        "flag": "https://media.api-sports.io/flags/pl.svg",
+        "season": 2024,
+        "round": "Regular Season - 32",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 340,
+          "name": "Gornik Zabrze",
+          "logo": "https://media.api-sports.io/football/teams/340.png",
+          "winner": null
+        },
+        "away": {
+          "id": 337,
+          "name": "Slask Wroclaw",
+          "logo": "https://media.api-sports.io/football/teams/337.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    }
+  ]
+}

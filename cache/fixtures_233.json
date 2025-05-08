@@ -1,0 +1,297 @@
+{
+  "get": "fixtures",
+  "parameters": {
+    "league": "233",
+    "season": "2024",
+    "from": "2025-05-08",
+    "to": "2025-05-09"
+  },
+  "errors": [],
+  "results": 4,
+  "paging": {
+    "current": 1,
+    "total": 1
+  },
+  "response": [
+    {
+      "fixture": {
+        "id": 1360768,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-08T17:00:00+00:00",
+        "timestamp": 1746723600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": null,
+          "name": "Borg El Arab Stadium",
+          "city": "Alexandria"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 233,
+        "name": "Premier League",
+        "country": "Egypt",
+        "logo": "https://media.api-sports.io/football/leagues/233.png",
+        "flag": "https://media.api-sports.io/flags/eg.svg",
+        "season": 2024,
+        "round": "Championship Round - 5",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 1577,
+          "name": "Al Ahly",
+          "logo": "https://media.api-sports.io/football/teams/1577.png",
+          "winner": null
+        },
+        "away": {
+          "id": 1031,
+          "name": "AL Masry",
+          "logo": "https://media.api-sports.io/football/teams/1031.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1360769,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-09T14:00:00+00:00",
+        "timestamp": 1746799200,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": null,
+          "name": "Arab Contractors Stadium",
+          "city": "Cairo"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 233,
+        "name": "Premier League",
+        "country": "Egypt",
+        "logo": "https://media.api-sports.io/football/leagues/233.png",
+        "flag": "https://media.api-sports.io/flags/eg.svg",
+        "season": 2024,
+        "round": "Championship Round - 5",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 14651,
+          "name": "Ceramica Cleopatra",
+          "logo": "https://media.api-sports.io/football/teams/14651.png",
+          "winner": null
+        },
+        "away": {
+          "id": 1040,
+          "name": "Zamalek SC",
+          "logo": "https://media.api-sports.io/football/teams/1040.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1360771,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-09T17:00:00+00:00",
+        "timestamp": 1746810000,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 477,
+          "name": "Cairo International Stadium",
+          "city": "Cairo"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 233,
+        "name": "Premier League",
+        "country": "Egypt",
+        "logo": "https://media.api-sports.io/football/leagues/233.png",
+        "flag": "https://media.api-sports.io/flags/eg.svg",
+        "season": 2024,
+        "round": "Championship Round - 5",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 15570,
+          "name": "National Bank of Egypt",
+          "logo": "https://media.api-sports.io/football/teams/15570.png",
+          "winner": null
+        },
+        "away": {
+          "id": 1036,
+          "name": "Pyramids FC",
+          "logo": "https://media.api-sports.io/football/teams/1036.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1360770,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-09T17:00:00+00:00",
+        "timestamp": 1746810000,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 10636,
+          "name": "Haras El Hodoud Stadium",
+          "city": "Alexandria"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 233,
+        "name": "Premier League",
+        "country": "Egypt",
+        "logo": "https://media.api-sports.io/football/leagues/233.png",
+        "flag": "https://media.api-sports.io/flags/eg.svg",
+        "season": 2024,
+        "round": "Championship Round - 5",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 15736,
+          "name": "Pharco",
+          "logo": "https://media.api-sports.io/football/teams/15736.png",
+          "winner": null
+        },
+        "away": {
+          "id": 1041,
+          "name": "Petrojet",
+          "logo": "https://media.api-sports.io/football/teams/1041.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    }
+  ]
+}

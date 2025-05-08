@@ -1,0 +1,437 @@
+{
+  "get": "fixtures",
+  "parameters": {
+    "league": "222",
+    "season": "2024",
+    "from": "2025-05-08",
+    "to": "2025-05-09"
+  },
+  "errors": [],
+  "results": 6,
+  "paging": {
+    "current": 1,
+    "total": 1
+  },
+  "response": [
+    {
+      "fixture": {
+        "id": 1227250,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-09T17:00:00+00:00",
+        "timestamp": 1746810000,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 3754,
+          "name": "Turnerwald-Stadion",
+          "city": "Althofen"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 222,
+        "name": "Regionalliga - Mitte",
+        "country": "Austria",
+        "logo": "https://media.api-sports.io/football/leagues/222.png",
+        "flag": "https://media.api-sports.io/flags/at.svg",
+        "season": 2024,
+        "round": "Mitte - 26",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 4962,
+          "name": "Treibach",
+          "logo": "https://media.api-sports.io/football/teams/4962.png",
+          "winner": null
+        },
+        "away": {
+          "id": 4940,
+          "name": "Gleisdorf 09",
+          "logo": "https://media.api-sports.io/football/teams/4940.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1227247,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-09T17:00:00+00:00",
+        "timestamp": 1746810000,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 3764,
+          "name": "Koralmstadion",
+          "city": "Deutschlandsberg"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 222,
+        "name": "Regionalliga - Mitte",
+        "country": "Austria",
+        "logo": "https://media.api-sports.io/football/leagues/222.png",
+        "flag": "https://media.api-sports.io/flags/at.svg",
+        "season": 2024,
+        "round": "Mitte - 26",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 4972,
+          "name": "Deutschlandsberger SC",
+          "logo": "https://media.api-sports.io/football/teams/4972.png",
+          "winner": null
+        },
+        "away": {
+          "id": 11225,
+          "name": "LASK Juniors",
+          "logo": "https://media.api-sports.io/football/teams/11225.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1227249,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-09T17:00:00+00:00",
+        "timestamp": 1746810000,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 3770,
+          "name": "Transdanubia Sportanlage",
+          "city": "Traun/Oedt"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 222,
+        "name": "Regionalliga - Mitte",
+        "country": "Austria",
+        "logo": "https://media.api-sports.io/football/leagues/222.png",
+        "flag": "https://media.api-sports.io/flags/at.svg",
+        "season": 2024,
+        "round": "Mitte - 26",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 4979,
+          "name": "Oedt",
+          "logo": "https://media.api-sports.io/football/teams/4979.png",
+          "winner": null
+        },
+        "away": {
+          "id": 8326,
+          "name": "Leoben",
+          "logo": "https://media.api-sports.io/football/teams/8326.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1227245,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-09T17:00:00+00:00",
+        "timestamp": 1746810000,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": null,
+          "name": "Strobl Arena Weiz",
+          "city": "Weiz"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 222,
+        "name": "Regionalliga - Mitte",
+        "country": "Austria",
+        "logo": "https://media.api-sports.io/football/leagues/222.png",
+        "flag": "https://media.api-sports.io/flags/at.svg",
+        "season": 2024,
+        "round": "Mitte - 26",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 4996,
+          "name": "Weiz",
+          "logo": "https://media.api-sports.io/football/teams/4996.png",
+          "winner": null
+        },
+        "away": {
+          "id": 4942,
+          "name": "Gurten",
+          "logo": "https://media.api-sports.io/football/teams/4942.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1227244,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-09T17:00:00+00:00",
+        "timestamp": 1746810000,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 5886,
+          "name": "Sportplatz SV Zaunergroup Wallern",
+          "city": "Wallern an der Trattnach"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 222,
+        "name": "Regionalliga - Mitte",
+        "country": "Austria",
+        "logo": "https://media.api-sports.io/football/leagues/222.png",
+        "flag": "https://media.api-sports.io/flags/at.svg",
+        "season": 2024,
+        "round": "Mitte - 26",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 21534,
+          "name": "Wallern / Marienkirchen",
+          "logo": "https://media.api-sports.io/football/teams/21534.png",
+          "winner": null
+        },
+        "away": {
+          "id": 4959,
+          "name": "St. Anna",
+          "logo": "https://media.api-sports.io/football/teams/4959.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1227246,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-09T17:00:00+00:00",
+        "timestamp": 1746810000,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 5842,
+          "name": "HUBER Arena",
+          "city": "Wels"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 222,
+        "name": "Regionalliga - Mitte",
+        "country": "Austria",
+        "logo": "https://media.api-sports.io/football/leagues/222.png",
+        "flag": "https://media.api-sports.io/flags/at.svg",
+        "season": 2024,
+        "round": "Mitte - 26",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 22213,
+          "name": "WSPG Wels",
+          "logo": "https://media.api-sports.io/football/teams/22213.png",
+          "winner": null
+        },
+        "away": {
+          "id": 1406,
+          "name": "SK Vorwarts Steyr",
+          "logo": "https://media.api-sports.io/football/teams/1406.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    }
+  ]
+}

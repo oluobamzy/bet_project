@@ -3,14 +3,18 @@ import numpy as np
 from pathlib import Path
 from typing import Optional, List, Dict
 from datetime import datetime, timedelta
-from cron.fetch_latest_data import fetch_fixtures, fetch_odds
+from utils.cron.fetch_latest_data import fetch_fixtures, fetch_odds
+from typing import List, Dict
+import pandas as pd
+from datetime import datetime, timedelta, timezone
+
 
 
 # --- Load historical match data
-DATA_PATH = Path("data/processed/clean_matches.csv")
+DATA_PATH = Path("utils/cron/data/processed/clean_matches.csv")
 
 try:
-    df_matches = pd.read_csv(DATA_PATH, parse_dates=["date"])
+    df_matches = pd.read_csv(DATA_PATH, parse_dates=["date"], low_memory=False)
 except Exception as e:
     raise FileNotFoundError(f"❌ Failed to load match data: {e}")
 
@@ -100,50 +104,71 @@ def get_live_odds(home_team: str, away_team: str) -> Dict[str, float]:
 
 
 def fetch_fixture_inputs(league_name: str = "EPL", for_tomorrow: bool = False) -> List[Dict]:
+    """
+    Fetch and construct input features for upcoming fixtures in the specified league.
+    """
     fixtures = fetch_fixtures()
     inputs = []
-    now = pd.Timestamp.now()
 
-    # Determine tomorrow's date for filtering
-    tomorrow = now + timedelta(days=1)
-    tomorrow_date = tomorrow.date()
+    # Get the current date and tomorrow's date, considering time zones
+    now = datetime.now(timezone.utc)  # Use timezone-aware datetime in UTC
+    today_date = now.date()
+    tomorrow_date = (now + timedelta(days=1)).date()
 
     for fx in fixtures:
         try:
+            # Filter by league name to avoid processing unnecessary fixtures
+            if league_name not in fx.get('league', {}).get('name', ''):
+                continue
+            
             home = fx['teams']['home']['name']
             away = fx['teams']['away']['name']
-            match_datetime = pd.to_datetime(fx['fixture']['date'])
+            match_datetime = pd.to_datetime(fx['fixture']['date']).tz_convert('UTC')  # Convert to UTC
             match_date = match_datetime.date()
 
-            # Unified date filtering logic
-            target_date = tomorrow_date if for_tomorrow else now.date()
+            # Unified date filtering logic with time zone consideration
+            target_date = tomorrow_date if for_tomorrow else today_date
             if match_date != target_date:
                 continue
 
-            # Compute relevant stats
-            home_form = get_form(home, match_datetime)
-            away_form = get_form(away, match_datetime)
-            h2h = get_h2h_rate(home, away, match_datetime)
-            odds = get_live_odds(home, away) or {}
+            # Fetch statistics for both teams
+            try:
+                home_form = get_form(home, match_datetime) or 0.5
+                away_form = get_form(away, match_datetime) or 0.5
+                h2h = get_h2h_rate(home, away, match_datetime) or 0.5
+                odds = get_live_odds(home, away) or {}
+            except Exception as stats_err:
+                print(f"⚠️ Error fetching stats for {home} vs {away}: {stats_err}")
+                continue
 
-            # Construct features
+            # Construct feature vector with default values if missing
             features = [
                 odds.get("home_odds", 2.0),
                 odds.get("away_odds", 2.0),
                 odds.get("draw_odds", 3.0),
-                home_form or 0.5,
-                away_form or 0.5,
-                h2h or 0.5
+                home_form,
+                away_form,
+                h2h
             ]
 
+            # Check for feature size correctness
+            if len(features) != 6:
+                print(f"⚠️ Feature size mismatch for {home} vs {away}. Expected 6, got {len(features)}.")
+                continue
+
+            # Append the valid input data
             inputs.append({
                 "home": home,
                 "away": away,
                 "date": str(match_date),
                 "features": features
             })
+
+        except KeyError as ke:
+            print(f"⚠️ Skipped fixture due to missing key: {ke}")
         except Exception as e:
-            print(f"⚠️ Skipped fixture {fx.get('fixture', {}).get('id')}: {e}")
+            print(f"⚠️ Error processing fixture {fx.get('fixture', {}).get('id', 'Unknown')}: {e}")
 
     return inputs
+
 

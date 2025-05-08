@@ -1,11 +1,9 @@
-# utils/data_cleaner.py
 import pandas as pd
-import os
 import numpy as np
-from pathlib import Path
-from typing import Dict, List
-from datetime import datetime
 import logging
+from pathlib import Path
+from typing import Dict
+from datetime import datetime
 
 # Configure logging
 logging.basicConfig(
@@ -28,14 +26,14 @@ def calculate_h2h(df: pd.DataFrame) -> Dict[frozenset, float]:
             ((df['home_team'] == home) & (df['away_team'] == away)) |
             ((df['home_team'] == away) & (df['away_team'] == home))
         ]
-        
+
         if len(matches) > 0:
             home_matches = matches[matches['home_team'] == home]
             win_rate = (home_matches['home_goals'] > home_matches['away_goals']).mean()
             h2h[pair] = 0.5 if np.isnan(win_rate) else win_rate
         else:
             h2h[pair] = 0.5
-            
+
     return h2h
 
 def process_historical() -> None:
@@ -43,13 +41,16 @@ def process_historical() -> None:
     try:
         start_time = datetime.now()
         dfs = []
-        data_dir = Path("data/historical")
-        processed_dir = Path("data/processed")
-        
+
+        # Get base directory where this script lives
+        base_dir = Path(__file__).resolve().parent
+        data_dir = base_dir / "cron" / "data" / "historical"
+        processed_dir = base_dir / "cron" / "data" / "processed"
+
         # 1. Verify and load data
         if not data_dir.exists():
             raise FileNotFoundError(f"Directory not found: {data_dir}")
-            
+        
         csv_files = list(data_dir.glob("*.csv"))
         if not csv_files:
             raise ValueError(f"No CSV files found in {data_dir}")
@@ -57,7 +58,7 @@ def process_historical() -> None:
         for file in csv_files:
             try:
                 df = pd.read_csv(file)
-                
+
                 # Standardize columns
                 column_map = {
                     "FTHG": "home_goals", "FTAG": "away_goals",
@@ -67,7 +68,7 @@ def process_historical() -> None:
                 }
                 df = df.rename(columns={k: v for k, v in column_map.items() if k in df.columns})
                 dfs.append(df)
-                
+            
             except Exception as e:
                 logging.warning(f"⚠️ Error processing {file.name}: {str(e)}")
                 continue
@@ -81,7 +82,7 @@ def process_historical() -> None:
         combined = combined.dropna(subset=['date'])
 
         # 3. Feature engineering
-        logging.info("Calculating features...")
+        logging.info("🧠 Calculating features...")
         for team_type in ['home', 'away']:
             combined = combined.sort_values([f'{team_type}_team', 'date'])
             combined[f'{team_type}_form'] = (
@@ -98,10 +99,12 @@ def process_historical() -> None:
 
         # 4. Save processed data
         processed_dir.mkdir(parents=True, exist_ok=True)
-        combined.to_csv(processed_dir/"clean_matches.csv", index=False)
-        
+        output_path = processed_dir / "clean_matches.csv"
+        combined.to_csv(output_path, index=False)
+
         duration = (datetime.now() - start_time).total_seconds()
         logging.info(f"✅ Processed {len(combined)} matches in {duration:.2f}s")
+        logging.info(f"📄 Output saved to: {output_path}")
 
     except Exception as e:
         logging.error(f"❌ Processing failed: {str(e)}")
