@@ -3,8 +3,8 @@
   "parameters": {
     "league": "233",
     "season": "2024",
-    "from": "2025-05-08",
-    "to": "2025-05-09"
+    "from": "2025-05-10",
+    "to": "2025-05-11"
   },
   "errors": [],
   "results": 4,
@@ -15,11 +15,81 @@
   "response": [
     {
       "fixture": {
-        "id": 1360768,
+        "id": 1360792,
         "referee": null,
         "timezone": "UTC",
-        "date": "2025-05-08T17:00:00+00:00",
-        "timestamp": 1746723600,
+        "date": "2025-05-10T17:00:00+00:00",
+        "timestamp": 1746896400,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 483,
+          "name": "Alexandria Stadium",
+          "city": "Alexandria"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 233,
+        "name": "Premier League",
+        "country": "Egypt",
+        "logo": "https://media.api-sports.io/football/leagues/233.png",
+        "flag": "https://media.api-sports.io/flags/eg.svg",
+        "season": 2024,
+        "round": "Relegation Round - 6",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 1572,
+          "name": "Al Ittihad",
+          "logo": "https://media.api-sports.io/football/teams/1572.png",
+          "winner": null
+        },
+        "away": {
+          "id": 13819,
+          "name": "Ghazl El Mehalla",
+          "logo": "https://media.api-sports.io/football/teams/13819.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1360793,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-11T14:00:00+00:00",
+        "timestamp": 1746972000,
         "periods": {
           "first": null,
           "second": null
@@ -43,20 +113,20 @@
         "logo": "https://media.api-sports.io/football/leagues/233.png",
         "flag": "https://media.api-sports.io/flags/eg.svg",
         "season": 2024,
-        "round": "Championship Round - 5",
+        "round": "Relegation Round - 6",
         "standings": true
       },
       "teams": {
         "home": {
-          "id": 1577,
-          "name": "Al Ahly",
-          "logo": "https://media.api-sports.io/football/teams/1577.png",
+          "id": 1044,
+          "name": "Smouha SC",
+          "logo": "https://media.api-sports.io/football/teams/1044.png",
           "winner": null
         },
         "away": {
-          "id": 1031,
-          "name": "AL Masry",
-          "logo": "https://media.api-sports.io/football/teams/1031.png",
+          "id": 1037,
+          "name": "Enppi",
+          "logo": "https://media.api-sports.io/football/teams/1037.png",
           "winner": null
         }
       },
@@ -85,19 +155,19 @@
     },
     {
       "fixture": {
-        "id": 1360769,
+        "id": 1360794,
         "referee": null,
         "timezone": "UTC",
-        "date": "2025-05-09T14:00:00+00:00",
-        "timestamp": 1746799200,
+        "date": "2025-05-11T17:00:00+00:00",
+        "timestamp": 1746982800,
         "periods": {
           "first": null,
           "second": null
         },
         "venue": {
-          "id": null,
-          "name": "Arab Contractors Stadium",
-          "city": "Cairo"
+          "id": 482,
+          "name": "Khaled Bichara Stadium",
+          "city": "El-Gouna"
         },
         "status": {
           "long": "Not Started",
@@ -113,20 +183,20 @@
         "logo": "https://media.api-sports.io/football/leagues/233.png",
         "flag": "https://media.api-sports.io/flags/eg.svg",
         "season": 2024,
-        "round": "Championship Round - 5",
+        "round": "Relegation Round - 6",
         "standings": true
       },
       "teams": {
         "home": {
-          "id": 14651,
-          "name": "Ceramica Cleopatra",
-          "logo": "https://media.api-sports.io/football/teams/14651.png",
+          "id": 1574,
+          "name": "El Gouna FC",
+          "logo": "https://media.api-sports.io/football/teams/1574.png",
           "winner": null
         },
         "away": {
-          "id": 1040,
-          "name": "Zamalek SC",
-          "logo": "https://media.api-sports.io/football/teams/1040.png",
+          "id": 1039,
+          "name": "El Geish",
+          "logo": "https://media.api-sports.io/football/teams/1039.png",
           "winner": null
         }
       },
@@ -155,11 +225,11 @@
     },
     {
       "fixture": {
-        "id": 1360771,
+        "id": 1360795,
         "referee": null,
         "timezone": "UTC",
-        "date": "2025-05-09T17:00:00+00:00",
-        "timestamp": 1746810000,
+        "date": "2025-05-11T17:00:00+00:00",
+        "timestamp": 1746982800,
         "periods": {
           "first": null,
           "second": null
@@ -183,90 +253,20 @@
         "logo": "https://media.api-sports.io/football/leagues/233.png",
         "flag": "https://media.api-sports.io/flags/eg.svg",
         "season": 2024,
-        "round": "Championship Round - 5",
+        "round": "Relegation Round - 6",
         "standings": true
       },
       "teams": {
         "home": {
-          "id": 15570,
-          "name": "National Bank of Egypt",
-          "logo": "https://media.api-sports.io/football/teams/15570.png",
+          "id": 7520,
+          "name": "Masr",
+          "logo": "https://media.api-sports.io/football/teams/7520.png",
           "winner": null
         },
         "away": {
-          "id": 1036,
-          "name": "Pyramids FC",
-          "logo": "https://media.api-sports.io/football/teams/1036.png",
-          "winner": null
-        }
-      },
-      "goals": {
-        "home": null,
-        "away": null
-      },
-      "score": {
-        "halftime": {
-          "home": null,
-          "away": null
-        },
-        "fulltime": {
-          "home": null,
-          "away": null
-        },
-        "extratime": {
-          "home": null,
-          "away": null
-        },
-        "penalty": {
-          "home": null,
-          "away": null
-        }
-      }
-    },
-    {
-      "fixture": {
-        "id": 1360770,
-        "referee": null,
-        "timezone": "UTC",
-        "date": "2025-05-09T17:00:00+00:00",
-        "timestamp": 1746810000,
-        "periods": {
-          "first": null,
-          "second": null
-        },
-        "venue": {
-          "id": 10636,
-          "name": "Haras El Hodoud Stadium",
-          "city": "Alexandria"
-        },
-        "status": {
-          "long": "Not Started",
-          "short": "NS",
-          "elapsed": null,
-          "extra": null
-        }
-      },
-      "league": {
-        "id": 233,
-        "name": "Premier League",
-        "country": "Egypt",
-        "logo": "https://media.api-sports.io/football/leagues/233.png",
-        "flag": "https://media.api-sports.io/flags/eg.svg",
-        "season": 2024,
-        "round": "Championship Round - 5",
-        "standings": true
-      },
-      "teams": {
-        "home": {
-          "id": 15736,
-          "name": "Pharco",
-          "logo": "https://media.api-sports.io/football/teams/15736.png",
-          "winner": null
-        },
-        "away": {
-          "id": 1041,
-          "name": "Petrojet",
-          "logo": "https://media.api-sports.io/football/teams/1041.png",
+          "id": 16431,
+          "name": "Future FC",
+          "logo": "https://media.api-sports.io/football/teams/16431.png",
           "winner": null
         }
       },

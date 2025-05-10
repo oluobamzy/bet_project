@@ -3,11 +3,11 @@
   "parameters": {
     "league": "218",
     "season": "2024",
-    "from": "2025-05-08",
-    "to": "2025-05-09"
+    "from": "2025-05-10",
+    "to": "2025-05-11"
   },
   "errors": [],
-  "results": 1,
+  "results": 5,
   "paging": {
     "current": 1,
     "total": 1
@@ -15,19 +15,229 @@
   "response": [
     {
       "fixture": {
-        "id": 1361689,
-        "referee": "J. Weinberger",
+        "id": 1361719,
+        "referee": "S. Gishamer",
         "timezone": "UTC",
-        "date": "2025-05-09T17:30:00+00:00",
-        "timestamp": 1746811800,
+        "date": "2025-05-10T15:00:00+00:00",
+        "timestamp": 1746889200,
         "periods": {
           "first": null,
           "second": null
         },
         "venue": {
-          "id": 150,
-          "name": "Merkur Arena",
-          "city": "Graz"
+          "id": 146,
+          "name": "CASHPOINT Arena",
+          "city": "Altach"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 218,
+        "name": "Bundesliga",
+        "country": "Austria",
+        "logo": "https://media.api-sports.io/football/leagues/218.png",
+        "flag": "https://media.api-sports.io/flags/at.svg",
+        "season": 2024,
+        "round": "Relegation Round - 8",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 618,
+          "name": "SCR Altach",
+          "logo": "https://media.api-sports.io/football/teams/618.png",
+          "winner": null
+        },
+        "away": {
+          "id": 4256,
+          "name": "Grazer AK",
+          "logo": "https://media.api-sports.io/football/teams/4256.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1361720,
+        "referee": "I. Simsek",
+        "timezone": "UTC",
+        "date": "2025-05-10T15:00:00+00:00",
+        "timestamp": 1746889200,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 143,
+          "name": "Raiffeisen Arena",
+          "city": "Linz"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 218,
+        "name": "Bundesliga",
+        "country": "Austria",
+        "logo": "https://media.api-sports.io/football/leagues/218.png",
+        "flag": "https://media.api-sports.io/flags/at.svg",
+        "season": 2024,
+        "round": "Relegation Round - 8",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 1026,
+          "name": "Lask Linz",
+          "logo": "https://media.api-sports.io/football/teams/1026.png",
+          "winner": null
+        },
+        "away": {
+          "id": 1072,
+          "name": "TSV Hartberg",
+          "logo": "https://media.api-sports.io/football/teams/1072.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1361721,
+        "referee": "S. Ebner",
+        "timezone": "UTC",
+        "date": "2025-05-10T15:00:00+00:00",
+        "timestamp": 1746889200,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 19258,
+          "name": "28 Black Arena",
+          "city": "Klagenfurt am W\u00f6rthersee"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 218,
+        "name": "Bundesliga",
+        "country": "Austria",
+        "logo": "https://media.api-sports.io/football/leagues/218.png",
+        "flag": "https://media.api-sports.io/flags/at.svg",
+        "season": 2024,
+        "round": "Relegation Round - 8",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 1405,
+          "name": "Austria Klagenfurt",
+          "logo": "https://media.api-sports.io/football/teams/1405.png",
+          "winner": null
+        },
+        "away": {
+          "id": 1398,
+          "name": "WSG Wattens",
+          "logo": "https://media.api-sports.io/football/teams/1398.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1361690,
+        "referee": "C. Ciochirca",
+        "timezone": "UTC",
+        "date": "2025-05-11T12:30:00+00:00",
+        "timestamp": 1746966600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 1761,
+          "name": "Lavanttal Arena",
+          "city": "Wolfsberg"
         },
         "status": {
           "long": "Not Started",
@@ -48,15 +258,85 @@
       },
       "teams": {
         "home": {
-          "id": 637,
-          "name": "Sturm Graz",
-          "logo": "https://media.api-sports.io/football/teams/637.png",
+          "id": 1025,
+          "name": "Wolfsberger AC",
+          "logo": "https://media.api-sports.io/football/teams/1025.png",
           "winner": null
         },
         "away": {
-          "id": 571,
-          "name": "Red Bull Salzburg",
-          "logo": "https://media.api-sports.io/football/teams/571.png",
+          "id": 1394,
+          "name": "FC BW Linz",
+          "logo": "https://media.api-sports.io/football/teams/1394.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1361691,
+        "referee": "C. J\u00e4eger",
+        "timezone": "UTC",
+        "date": "2025-05-11T15:00:00+00:00",
+        "timestamp": 1746975600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 136,
+          "name": "Generali Arena",
+          "city": "Wien"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 218,
+        "name": "Bundesliga",
+        "country": "Austria",
+        "logo": "https://media.api-sports.io/football/leagues/218.png",
+        "flag": "https://media.api-sports.io/flags/at.svg",
+        "season": 2024,
+        "round": "Championship Round - 8",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 601,
+          "name": "Austria Vienna",
+          "logo": "https://media.api-sports.io/football/teams/601.png",
+          "winner": null
+        },
+        "away": {
+          "id": 781,
+          "name": "Rapid Vienna",
+          "logo": "https://media.api-sports.io/football/teams/781.png",
           "winner": null
         }
       },

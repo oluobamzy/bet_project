@@ -6,7 +6,6 @@ import pandas as pd
 import joblib
 import logging
 from pathlib import Path
-from typing import List, Dict, Union, Optional, Any
 from fetch_data import fetch_fixture_inputs
 
 # Configure logging
@@ -89,7 +88,7 @@ CONFIDENCE_INDICATORS = {
 }
 
 # --- Predict upcoming fixtures
-def predict_bet(league: str = "EPL") -> Union[List[Dict], str]:
+def predict_bet(league: str = "EPL") -> str:
     """Predict matches scheduled for TODAY for a given league."""
     fixtures = fetch_fixture_inputs(league_name=league, for_tomorrow=False)
 
@@ -149,7 +148,7 @@ def predict_bet(league: str = "EPL") -> Union[List[Dict], str]:
     
     return results
 
-def predict_bet_tomorrow(league_name: str = "EPL") -> Union[List[Dict], str]:
+def predict_bet_tomorrow(league_name: str = "EPL") -> str:
     """Predict matches scheduled for TOMORROW for a given league."""
     fixtures = fetch_fixture_inputs(league_name=league_name, for_tomorrow=True)
 

@@ -3,11 +3,11 @@
   "parameters": {
     "league": "332",
     "season": "2024",
-    "from": "2025-05-09",
-    "to": "2025-05-10"
+    "from": "2025-05-10",
+    "to": "2025-05-11"
   },
   "errors": [],
-  "results": 4,
+  "results": 6,
   "paging": {
     "current": 1,
     "total": 1
@@ -16,7 +16,7 @@
     {
       "fixture": {
         "id": 1356772,
-        "referee": null,
+        "referee": "M. O\u010den\u00e1\u0161",
         "timezone": "UTC",
         "date": "2025-05-10T16:00:00+00:00",
         "timestamp": 1746892800,
@@ -86,7 +86,7 @@
     {
       "fixture": {
         "id": 1356801,
-        "referee": null,
+        "referee": "E. Gemzick\u00fd",
         "timezone": "UTC",
         "date": "2025-05-10T16:00:00+00:00",
         "timestamp": 1746892800,
@@ -156,7 +156,7 @@
     {
       "fixture": {
         "id": 1356802,
-        "referee": null,
+        "referee": "F. Glova",
         "timezone": "UTC",
         "date": "2025-05-10T16:00:00+00:00",
         "timestamp": 1746892800,
@@ -226,7 +226,7 @@
     {
       "fixture": {
         "id": 1356770,
-        "referee": null,
+        "referee": "M. Chore\u0148",
         "timezone": "UTC",
         "date": "2025-05-10T18:30:00+00:00",
         "timestamp": 1746901800,
@@ -267,6 +267,146 @@
           "id": 3554,
           "name": "\u017dilina",
           "logo": "https://media.api-sports.io/football/teams/3554.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1356771,
+        "referee": "B. Marhefka",
+        "timezone": "UTC",
+        "date": "2025-05-11T16:00:00+00:00",
+        "timestamp": 1746979200,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 1436,
+          "name": "MOL Ar\u00e9na",
+          "city": "Dunajsk\u00e1 Streda"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 332,
+        "name": "Super Liga",
+        "country": "Slovakia",
+        "logo": "https://media.api-sports.io/football/leagues/332.png",
+        "flag": "https://media.api-sports.io/flags/sk.svg",
+        "season": 2024,
+        "round": "Championship Round - 9",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 2257,
+          "name": "Dunajska Streda",
+          "logo": "https://media.api-sports.io/football/teams/2257.png",
+          "winner": null
+        },
+        "away": {
+          "id": 1120,
+          "name": "Spartak Trnava",
+          "logo": "https://media.api-sports.io/football/teams/1120.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1356800,
+        "referee": "M. Smolak",
+        "timezone": "UTC",
+        "date": "2025-05-11T16:00:00+00:00",
+        "timestamp": 1746979200,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 2357,
+          "name": "Futbalov\u00fd \u0161tadi\u00f3n MFK Zempl\u00edn",
+          "city": "Michalovce"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 332,
+        "name": "Super Liga",
+        "country": "Slovakia",
+        "logo": "https://media.api-sports.io/football/leagues/332.png",
+        "flag": "https://media.api-sports.io/flags/sk.svg",
+        "season": 2024,
+        "round": "Relegation Round - 9",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 3552,
+          "name": "Zempl\u00edn Michalovce",
+          "logo": "https://media.api-sports.io/football/teams/3552.png",
+          "winner": null
+        },
+        "away": {
+          "id": 10535,
+          "name": "Kom\u00e1rno",
+          "logo": "https://media.api-sports.io/football/teams/10535.png",
           "winner": null
         }
       },

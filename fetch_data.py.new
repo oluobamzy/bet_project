@@ -22,7 +22,6 @@ def fetch_fixtures() -> List[Dict]:
     """
     # Look for fixture data in cache first
     cache_dir = Path("cache")
-    cron_cache_dir = Path("utils/cron/cache")
     fixtures = []
     
     # Define mappings between API league IDs and our league codes
@@ -51,29 +50,16 @@ def fetch_fixtures() -> List[Dict]:
         208: "PremierLeagueIL" # Israeli Premier League
     }
     
-    cache_dirs = [cache_dir]
-    if cron_cache_dir.exists():
-        cache_dirs.append(cron_cache_dir)
+    # Try to load fixtures from cache files
+    for fixture_file in cache_dir.glob("fixtures_*.json"):
+        try:
+            with open(fixture_file, 'r') as f:
+                data = json.load(f)
+                response_fixtures = data.get('response', [])
+                fixtures.extend(response_fixtures)
+        except Exception as e:
+            logging.error(f"❌ Error loading fixture file {fixture_file}: {e}")
     
-    # Try to load fixtures from all possible cache locations
-    for dir_path in cache_dirs:
-        if not dir_path.exists():
-            logging.warning(f"⚠️ Cache directory not found: {dir_path}")
-            continue
-            
-        for fixture_file in dir_path.glob("fixtures_*.json"):
-            try:
-                with open(fixture_file, 'r') as f:
-                    data = json.load(f)
-                    response_fixtures = data.get('response', [])
-                    fixtures.extend(response_fixtures)
-                    logging.debug(f"✅ Loaded {len(response_fixtures)} fixtures from {fixture_file}")
-            except Exception as e:
-                logging.error(f"❌ Error loading fixture file {fixture_file}: {e}")
-    
-    if not fixtures:
-        logging.warning(f"⚠️ No fixtures found in any cache directory. Check if API data was fetched correctly.")
-        
     logging.info(f"📊 Loaded {len(fixtures)} fixtures from cache")
     return fixtures
 
@@ -164,7 +150,7 @@ def fetch_fixture_inputs(league_name: str = "EPL", for_tomorrow: bool = False) -
         "home_form", "away_form", "h2h_win_rate"
     ] if expected_features is None else expected_features
     
-    # Define comprehensive mappings between API league IDs and our league codes
+    # Define mappings between API league IDs and our league codes
     league_id_mappings = {
         39: "EPL",       # Premier League (England)
         140: "LaLiga",   # La Liga (Spain)
@@ -174,51 +160,7 @@ def fetch_fixture_inputs(league_name: str = "EPL", for_tomorrow: bool = False) -
         94: "PrimeiraLiga", # Primeira Liga (Portugal)
         88: "Eredivisie", # Eredivisie (Netherlands)
         144: "ProLeague", # Pro League (Belgium)
-        179: "SPL",      # Scottish Premier League
-        203: "SuperLig", # Super Lig (Turkey)
-        218: "BundesligaAT", # Austrian Bundesliga
-        222: "SuperLeagueCH", # Swiss Super League
-        197: "Superliga", # Danish Superliga
-        106: "Eliteserien", # Norwegian Eliteserien
-        121: "Allsvenskan", # Swedish Allsvenskan
-        332: "UPL",      # Ukrainian Premier League
-        200: "SuperLeagueGR", # Greek Super League
-        233: "FortunaLiga", # Czech Fortuna Liga
-        241: "HNL",      # Croatian HNL
-        237: "SuperLigaRS", # Serbian Super Liga
-        205: "Ekstraklasa", # Polish Ekstraklasa
-        208: "PremierLeagueIL", # Israeli Premier League
-    }
-    
-    # Create a reverse mapping from full names to codes for fuzzy matching
-    league_name_mappings = {
-        "premier league": "EPL",
-        "english premier league": "EPL",
-        "la liga": "LaLiga",
-        "primera division": "LaLiga",
-        "serie a": "SerieA",
-        "bundesliga": "Bundesliga",
-        "ligue 1": "Ligue1",
-        "primeira liga": "PrimeiraLiga",
-        "eredivisie": "Eredivisie",
-        "pro league": "ProLeague",
-        "jupiler pro league": "ProLeague",
-        "scottish premiership": "SPL",
-        "premiership": "SPL",
-        "super lig": "SuperLig",
-        "süper lig": "SuperLig",
-        "bundesliga at": "BundesligaAT",
-        "super league ch": "SuperLeagueCH",
-        "superliga": "Superliga",
-        "eliteserien": "Eliteserien",
-        "allsvenskan": "Allsvenskan",
-        "ukrainian premier league": "UPL",
-        "super league gr": "SuperLeagueGR",
-        "fortuna liga": "FortunaLiga",
-        "prva hnl": "HNL",
-        "superliga rs": "SuperLigaRS",
-        "ekstraklasa": "Ekstraklasa",
-        "premier league il": "PremierLeagueIL"
+        # Add remaining leagues as needed
     }
     
     filtered_fixtures = 0
@@ -227,25 +169,13 @@ def fetch_fixture_inputs(league_name: str = "EPL", for_tomorrow: bool = False) -
             # Filter by league name to avoid processing unnecessary fixtures
             league_name_in_api = fx.get('league', {}).get('name', '')
             league_id = fx.get('league', {}).get('id', 0)
-            league_country = fx.get('league', {}).get('country', '')
             
-            # Check if this fixture matches our requested league (multiple matching strategies)
+            # Check if this fixture matches our requested league
             matches_league = False
-            
-            # Method 1: Direct ID mapping
             if league_id in league_id_mappings and league_id_mappings[league_id] == league_name:
                 matches_league = True
-                logging.debug(f"Match found by league ID {league_id}")
-                
-            # Method 2: Case-insensitive substring matching
             elif league_name.lower() in league_name_in_api.lower():
                 matches_league = True
-                logging.debug(f"Match found by substring in name: {league_name} in {league_name_in_api}")
-                
-            # Method 3: Fuzzy name mapping (handled manually)
-            elif league_name_in_api.lower() in league_name_mappings and league_name_mappings[league_name_in_api.lower()] == league_name:
-                matches_league = True
-                logging.debug(f"Match found by name mapping: {league_name_in_api}")
                 
             if not matches_league:
                 continue

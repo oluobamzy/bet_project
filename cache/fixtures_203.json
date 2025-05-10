@@ -3,156 +3,16 @@
   "parameters": {
     "league": "203",
     "season": "2024",
-    "from": "2025-05-09",
-    "to": "2025-05-10"
+    "from": "2025-05-10",
+    "to": "2025-05-11"
   },
   "errors": [],
-  "results": 5,
+  "results": 6,
   "paging": {
     "current": 1,
     "total": 1
   },
   "response": [
-    {
-      "fixture": {
-        "id": 1238160,
-        "referee": "B. Pakkan",
-        "timezone": "UTC",
-        "date": "2025-05-09T17:00:00+00:00",
-        "timestamp": 1746810000,
-        "periods": {
-          "first": null,
-          "second": null
-        },
-        "venue": {
-          "id": 1584,
-          "name": "Ba\u015fak\u015fehir Fatih Terim Stadyumu",
-          "city": "\u0130stanbul"
-        },
-        "status": {
-          "long": "Not Started",
-          "short": "NS",
-          "elapsed": null,
-          "extra": null
-        }
-      },
-      "league": {
-        "id": 203,
-        "name": "S\u00fcper Lig",
-        "country": "Turkey",
-        "logo": "https://media.api-sports.io/football/leagues/203.png",
-        "flag": "https://media.api-sports.io/flags/tr.svg",
-        "season": 2024,
-        "round": "Regular Season - 35",
-        "standings": true
-      },
-      "teams": {
-        "home": {
-          "id": 564,
-          "name": "Istanbul Basaksehir",
-          "logo": "https://media.api-sports.io/football/teams/564.png",
-          "winner": null
-        },
-        "away": {
-          "id": 611,
-          "name": "Fenerbahce",
-          "logo": "https://media.api-sports.io/football/teams/611.png",
-          "winner": null
-        }
-      },
-      "goals": {
-        "home": null,
-        "away": null
-      },
-      "score": {
-        "halftime": {
-          "home": null,
-          "away": null
-        },
-        "fulltime": {
-          "home": null,
-          "away": null
-        },
-        "extratime": {
-          "home": null,
-          "away": null
-        },
-        "penalty": {
-          "home": null,
-          "away": null
-        }
-      }
-    },
-    {
-      "fixture": {
-        "id": 1238163,
-        "referee": "K. Sa\u011flam",
-        "timezone": "UTC",
-        "date": "2025-05-09T17:00:00+00:00",
-        "timestamp": 1746810000,
-        "periods": {
-          "first": null,
-          "second": null
-        },
-        "venue": {
-          "id": 2375,
-          "name": "Gaziantep Stadyumu",
-          "city": "Gaziantep"
-        },
-        "status": {
-          "long": "Not Started",
-          "short": "NS",
-          "elapsed": null,
-          "extra": null
-        }
-      },
-      "league": {
-        "id": 203,
-        "name": "S\u00fcper Lig",
-        "country": "Turkey",
-        "logo": "https://media.api-sports.io/football/leagues/203.png",
-        "flag": "https://media.api-sports.io/flags/tr.svg",
-        "season": 2024,
-        "round": "Regular Season - 35",
-        "standings": true
-      },
-      "teams": {
-        "home": {
-          "id": 3573,
-          "name": "Gazi\u015fehir Gaziantep",
-          "logo": "https://media.api-sports.io/football/teams/3573.png",
-          "winner": null
-        },
-        "away": {
-          "id": 996,
-          "name": "Alanyaspor",
-          "logo": "https://media.api-sports.io/football/teams/996.png",
-          "winner": null
-        }
-      },
-      "goals": {
-        "home": null,
-        "away": null
-      },
-      "score": {
-        "halftime": {
-          "home": null,
-          "away": null
-        },
-        "fulltime": {
-          "home": null,
-          "away": null
-        },
-        "extratime": {
-          "home": null,
-          "away": null
-        },
-        "penalty": {
-          "home": null,
-          "away": null
-        }
-      }
-    },
     {
       "fixture": {
         "id": 1238158,
@@ -166,7 +26,7 @@
         },
         "venue": {
           "id": null,
-          "name": "Meda\u015f Konya B\u00fcy\u00fck\u015fehir Stadyumu",
+          "name": "Medas Konya B\u00fcy\u00fcksehir Stadyumu",
           "city": "Konya"
         },
         "status": {
@@ -337,6 +197,216 @@
           "id": 645,
           "name": "Galatasaray",
           "logo": "https://media.api-sports.io/football/teams/645.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1238155,
+        "referee": "\u00dc. \u00d6zt\u00fcrk",
+        "timezone": "UTC",
+        "date": "2025-05-11T13:00:00+00:00",
+        "timestamp": 1746968400,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 20425,
+          "name": "BG Group 4 Eyl\u00fcl Stadyumu",
+          "city": "Sivas"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 203,
+        "name": "S\u00fcper Lig",
+        "country": "Turkey",
+        "logo": "https://media.api-sports.io/football/leagues/203.png",
+        "flag": "https://media.api-sports.io/flags/tr.svg",
+        "season": 2024,
+        "round": "Regular Season - 35",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 1002,
+          "name": "Sivasspor",
+          "logo": "https://media.api-sports.io/football/teams/1002.png",
+          "winner": null
+        },
+        "away": {
+          "id": 3583,
+          "name": "BB Bodrumspor",
+          "logo": "https://media.api-sports.io/football/teams/3583.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1238156,
+        "referee": "\u00c7. Altay",
+        "timezone": "UTC",
+        "date": "2025-05-11T16:00:00+00:00",
+        "timestamp": 1746979200,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 20423,
+          "name": "T\u00fcpra\u015f Stadyumu",
+          "city": "\u0130stanbul"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 203,
+        "name": "S\u00fcper Lig",
+        "country": "Turkey",
+        "logo": "https://media.api-sports.io/football/leagues/203.png",
+        "flag": "https://media.api-sports.io/flags/tr.svg",
+        "season": 2024,
+        "round": "Regular Season - 35",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 549,
+          "name": "Besiktas",
+          "logo": "https://media.api-sports.io/football/teams/549.png",
+          "winner": null
+        },
+        "away": {
+          "id": 3563,
+          "name": "Adana Demirspor",
+          "logo": "https://media.api-sports.io/football/teams/3563.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1238162,
+        "referee": "B. Ta\u015fk\u0131nsoy",
+        "timezone": "UTC",
+        "date": "2025-05-11T16:00:00+00:00",
+        "timestamp": 1746979200,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 1583,
+          "name": "G\u00fcrsel Aksel Stadyumu",
+          "city": "\u0130zmir"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 203,
+        "name": "S\u00fcper Lig",
+        "country": "Turkey",
+        "logo": "https://media.api-sports.io/football/leagues/203.png",
+        "flag": "https://media.api-sports.io/flags/tr.svg",
+        "season": 2024,
+        "round": "Regular Season - 35",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 994,
+          "name": "Goztepe",
+          "logo": "https://media.api-sports.io/football/teams/994.png",
+          "winner": null
+        },
+        "away": {
+          "id": 3575,
+          "name": "Hatayspor",
+          "logo": "https://media.api-sports.io/football/teams/3575.png",
           "winner": null
         }
       },

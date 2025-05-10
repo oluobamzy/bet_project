@@ -1,0 +1,217 @@
+# predict.py
+
+import os
+import numpy as np
+import pandas as pd
+import joblib
+import logging
+from pathlib import Path
+from fetch_data import fetch_fixture_inputs
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+
+# Dictionary to store loaded models
+models = {}
+feature_lists = {}
+
+def load_model(league_name=None):
+    """
+    Load the appropriate model for the given league.
+    If a league-specific model is available and the league is specified, use it.
+    Otherwise, fall back to the general model.
+    """
+    models_folder = Path("models")
+    
+    # Determine model filename
+    if league_name:
+        # Try to use league-specific model
+        model_path = models_folder / f"xgboost_model_{league_name}.pkl"
+        feature_path = models_folder / f"feature_list_{league_name}.pkl"
+        
+        # If league model doesn't exist, use general model
+        if not model_path.exists():
+            logging.info(f"⚠️ No specific model for {league_name}, using general model")
+            model_path = models_folder / "xgboost_model.pkl"
+            feature_path = models_folder / "feature_list.pkl"
+    else:
+        # Use general model
+        model_path = models_folder / "xgboost_model.pkl"
+        feature_path = models_folder / "feature_list.pkl"
+    
+    # Check if model is already loaded
+    model_key = league_name if league_name else "general"
+    if model_key in models:
+        logging.info(f"✅ Using cached model for {model_key}")
+        return models[model_key], feature_lists.get(model_key)
+    
+    # Load the model
+    try:
+        if not model_path.exists():
+            raise FileNotFoundError(f"Model file not found: {model_path}")
+            
+        model = joblib.load(model_path)
+        logging.info(f"✅ Loaded model from {model_path}")
+        
+        # Load feature list if available
+        feature_list = None
+        if feature_path.exists():
+            feature_list = joblib.load(feature_path)
+            logging.info(f"✅ Loaded feature list: {feature_list['features']}")
+        
+        # Cache the loaded model and feature list
+        models[model_key] = model
+        feature_lists[model_key] = feature_list
+        
+        return model, feature_list
+        
+    except Exception as e:
+        logging.error(f"❌ Failed to load model for {model_key}: {e}")
+        raise FileNotFoundError(f"❌ Failed to load model: {e}")
+
+# Ensure at least the general model exists
+try:
+    general_model, general_features = load_model()
+except FileNotFoundError:
+    raise FileNotFoundError("❌ No model file (.pkl) found in models/ folder! Please train a model first.")
+
+# Emoji and confidence indicators
+OUTCOME_EMOJIS = ["🏠", "🤝", "🚀"]
+CONFIDENCE_INDICATORS = {
+    "high": "⭐⭐⭐",  # 75%+
+    "medium": "⭐⭐",   # 60-75%
+    "low": "⭐",      # <60%
+}
+
+# --- Predict upcoming fixtures
+def predict_bet(league: str = "EPL") -> str:
+    """Predict matches scheduled for TODAY for a given league."""
+    fixtures = fetch_fixture_inputs(league_name=league, for_tomorrow=False)
+
+    if not fixtures:
+        return "❌ No fixtures found for today."
+        
+    # Load appropriate model for this league
+    try:
+        current_model, _ = load_model(league)
+    except Exception as e:
+        logging.error(f"❌ Failed to load model for {league}: {e}")
+        return f"❌ Error loading prediction model: {str(e)}"    results = []
+    for fixture in fixtures:
+        home = fixture["home_team"]
+        away = fixture["away_team"]
+        features = fixture["features"]
+
+        try:
+            input_array = np.array(features).reshape(1, -1)
+            
+            # Get prediction probabilities
+            pred_probs = current_model.predict_proba(input_array)[0]
+            pred_class = pred_probs.argmax()
+            confidence = pred_probs[pred_class] * 100
+            
+            # Get confidence indicator
+            confidence_level = "high" if confidence >= 75 else "medium" if confidence >= 60 else "low"
+            confidence_stars = CONFIDENCE_INDICATORS[confidence_level]
+            
+            # Format outcome with emoji and confidence
+            outcome_text = ["Home Win", "Draw", "Away Win"][pred_class]
+            outcome_emoji = OUTCOME_EMOJIS[pred_class]
+            
+            # Add formatted prediction to results
+            results.append(
+                f"**{home} vs {away}:** {outcome_emoji} {outcome_text} {confidence_stars} ({confidence:.1f}%)"
+            )
+            
+            # Log prediction details
+            logging.info(f"Prediction for {home} vs {away}: {outcome_text} with {confidence:.1f}% confidence")
+            
+        except Exception as e:
+            results.append(f"**{home} vs {away}: ❌ Prediction Error ({e})**")
+            logging.error(f"Error predicting {home} vs {away}: {e}")
+
+    return "\n".join(results)
+
+def predict_bet_tomorrow(league_name="EPL") -> str:
+    """Predict matches scheduled for TOMORROW for a given league."""
+    fixtures = fetch_fixture_inputs(league_name=league_name, for_tomorrow=True)
+
+    if not fixtures:
+        return "❌ No fixtures found for tomorrow."
+
+    # Load appropriate model for this league
+    try:
+        current_model, _ = load_model(league_name)
+    except Exception as e:
+        logging.error(f"❌ Failed to load model for {league_name}: {e}")
+        return f"❌ Error loading prediction model: {str(e)}"    predictions = []
+    for fixture in fixtures:
+        home = fixture["home_team"]
+        away = fixture["away_team"]
+        features = fixture["features"]
+
+        try:
+            input_array = np.array(features).reshape(1, -1)
+            
+            # Get prediction probabilities
+            pred_probs = current_model.predict_proba(input_array)[0]
+            pred_class = pred_probs.argmax()
+            confidence = pred_probs[pred_class] * 100
+            
+            # Get confidence indicator
+            confidence_level = "high" if confidence >= 75 else "medium" if confidence >= 60 else "low"
+            confidence_stars = CONFIDENCE_INDICATORS[confidence_level]
+            
+            # Format outcome with emoji and confidence
+            outcome_text = ["Home Win", "Draw", "Away Win"][pred_class]
+            outcome_emoji = OUTCOME_EMOJIS[pred_class]
+            
+            # Add formatted prediction to predictions
+            predictions.append(
+                f"**{home} vs {away}:** {outcome_emoji} {outcome_text} {confidence_stars} ({confidence:.1f}%)"
+            )
+            
+            # Log prediction details
+            logging.info(f"Prediction for {home} vs {away}: {outcome_text} with {confidence:.1f}% confidence")
+            
+        except Exception as e:
+            predictions.append(f"**{home} vs {away}: ❌ Prediction Error ({e})**")
+            logging.error(f"Error predicting {home} vs {away}: {e}")
+
+    return "\n".join(predictions)
+
+def predict_single_match(home_team: str, away_team: str, model_input: list, league_name: str = "") -> str:
+    """Predict a single match given pre-built model input."""
+    try:
+        # Load appropriate model
+        current_model, _ = load_model(league_name)
+        
+        input_array = np.array(model_input).reshape(1, -1)
+        
+        # Get prediction probabilities
+        pred_probs = current_model.predict_proba(input_array)[0]
+        pred_class = pred_probs.argmax()
+        confidence = pred_probs[pred_class] * 100
+        
+        # Get confidence indicator
+        confidence_level = "high" if confidence >= 75 else "medium" if confidence >= 60 else "low"
+        confidence_stars = CONFIDENCE_INDICATORS[confidence_level]
+        
+        # Format outcome with emoji and confidence
+        outcome_text = ["Home Win", "Draw", "Away Win"][pred_class]
+        outcome_emoji = OUTCOME_EMOJIS[pred_class]
+        
+        # Add model info to output
+        model_info = f" [Using {league_name or 'general'} model]" if league_name else ""
+        
+        return f"**{home_team} vs {away_team}:** {outcome_emoji} {outcome_text} {confidence_stars} ({confidence:.1f}%){model_info}"
+        
+    except Exception as e:
+        return f"❌ Error predicting {home_team} vs {away_team}: {e}"
+
+# --- Example usage for CLI testing
+if __name__ == "__main__":
+    print(predict_bet())

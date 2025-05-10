@@ -3,11 +3,11 @@
   "parameters": {
     "league": "106",
     "season": "2024",
-    "from": "2025-05-08",
-    "to": "2025-05-09"
+    "from": "2025-05-10",
+    "to": "2025-05-11"
   },
   "errors": [],
-  "results": 2,
+  "results": 6,
   "paging": {
     "current": 1,
     "total": 1
@@ -15,19 +15,19 @@
   "response": [
     {
       "fixture": {
-        "id": 1203234,
-        "referee": null,
+        "id": 1203236,
+        "referee": "S. Krasny",
         "timezone": "UTC",
-        "date": "2025-05-09T16:00:00+00:00",
-        "timestamp": 1746806400,
+        "date": "2025-05-10T12:45:00+00:00",
+        "timestamp": 1746881100,
         "periods": {
           "first": null,
           "second": null
         },
         "venue": {
-          "id": null,
-          "name": "Motor Lublin Arena",
-          "city": "Lublin"
+          "id": 20753,
+          "name": "Stadion Radomiaka",
+          "city": "Radom"
         },
         "status": {
           "long": "Not Started",
@@ -48,15 +48,15 @@
       },
       "teams": {
         "home": {
-          "id": 14562,
-          "name": "Motor Lublin",
-          "logo": "https://media.api-sports.io/football/teams/14562.png",
+          "id": 4248,
+          "name": "Radomiak Radom",
+          "logo": "https://media.api-sports.io/football/teams/4248.png",
           "winner": null
         },
         "away": {
-          "id": 349,
-          "name": "Piast Gliwice",
-          "logo": "https://media.api-sports.io/football/teams/349.png",
+          "id": 348,
+          "name": "Pogon Szczecin",
+          "logo": "https://media.api-sports.io/football/teams/348.png",
           "winner": null
         }
       },
@@ -85,19 +85,19 @@
     },
     {
       "fixture": {
-        "id": 1203230,
-        "referee": null,
+        "id": 1203231,
+        "referee": "M. Kochanek",
         "timezone": "UTC",
-        "date": "2025-05-09T18:30:00+00:00",
-        "timestamp": 1746815400,
+        "date": "2025-05-10T15:30:00+00:00",
+        "timestamp": 1746891000,
         "periods": {
           "first": null,
           "second": null
         },
         "venue": {
-          "id": 18625,
-          "name": "Stadion im. Ernesta Pohla",
-          "city": "Zabrze"
+          "id": 1260,
+          "name": "Stadion Zag\u0142\u0119bia Lubin",
+          "city": "Lubin"
         },
         "status": {
           "long": "Not Started",
@@ -118,15 +118,295 @@
       },
       "teams": {
         "home": {
-          "id": 340,
-          "name": "Gornik Zabrze",
-          "logo": "https://media.api-sports.io/football/teams/340.png",
+          "id": 345,
+          "name": "Zaglebie Lubin",
+          "logo": "https://media.api-sports.io/football/teams/345.png",
           "winner": null
         },
         "away": {
-          "id": 337,
-          "name": "Slask Wroclaw",
-          "logo": "https://media.api-sports.io/football/teams/337.png",
+          "id": 6962,
+          "name": "Widzew \u0141\u00f3d\u017a",
+          "logo": "https://media.api-sports.io/football/teams/6962.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1203237,
+        "referee": "P. Raczkowski",
+        "timezone": "UTC",
+        "date": "2025-05-10T18:15:00+00:00",
+        "timestamp": 1746900900,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 18633,
+          "name": "zondacrypto Arena",
+          "city": "Cz\u0119stochowa"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 106,
+        "name": "Ekstraklasa",
+        "country": "Poland",
+        "logo": "https://media.api-sports.io/football/leagues/106.png",
+        "flag": "https://media.api-sports.io/flags/pl.svg",
+        "season": 2024,
+        "round": "Regular Season - 32",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 3491,
+          "name": "Rak\u00f3w Cz\u0119stochowa",
+          "logo": "https://media.api-sports.io/football/teams/3491.png",
+          "winner": null
+        },
+        "away": {
+          "id": 336,
+          "name": "Jagiellonia",
+          "logo": "https://media.api-sports.io/football/teams/336.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1203232,
+        "referee": "L. Ku\u017ama",
+        "timezone": "UTC",
+        "date": "2025-05-11T10:15:00+00:00",
+        "timestamp": 1746958500,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 18627,
+          "name": "Polsat Plus Arena Gda\u0144sk",
+          "city": "Gda\u0144sk"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 106,
+        "name": "Ekstraklasa",
+        "country": "Poland",
+        "logo": "https://media.api-sports.io/football/leagues/106.png",
+        "flag": "https://media.api-sports.io/flags/pl.svg",
+        "season": 2024,
+        "round": "Regular Season - 32",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 343,
+          "name": "Lechia Gdansk",
+          "logo": "https://media.api-sports.io/football/teams/343.png",
+          "winner": null
+        },
+        "away": {
+          "id": 346,
+          "name": "Korona Kielce",
+          "logo": "https://media.api-sports.io/football/teams/346.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1203229,
+        "referee": "D. Kos",
+        "timezone": "UTC",
+        "date": "2025-05-11T12:45:00+00:00",
+        "timestamp": 1746967500,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 3241,
+          "name": "Arena Katowice",
+          "city": "Katowice"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 106,
+        "name": "Ekstraklasa",
+        "country": "Poland",
+        "logo": "https://media.api-sports.io/football/leagues/106.png",
+        "flag": "https://media.api-sports.io/flags/pl.svg",
+        "season": 2024,
+        "round": "Regular Season - 32",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 3484,
+          "name": "GKS Katowice",
+          "logo": "https://media.api-sports.io/football/teams/3484.png",
+          "winner": null
+        },
+        "away": {
+          "id": 350,
+          "name": "Cracovia Krakow",
+          "logo": "https://media.api-sports.io/football/teams/350.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1203233,
+        "referee": "W. My\u0107",
+        "timezone": "UTC",
+        "date": "2025-05-11T15:30:00+00:00",
+        "timestamp": 1746977400,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 1253,
+          "name": "Stadion Miejski Legii Warszawa im. Marsza\u0142ka J\u00f3zefa Pi\u0142sudskiego",
+          "city": "Warszawa"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 106,
+        "name": "Ekstraklasa",
+        "country": "Poland",
+        "logo": "https://media.api-sports.io/football/leagues/106.png",
+        "flag": "https://media.api-sports.io/flags/pl.svg",
+        "season": 2024,
+        "round": "Regular Season - 32",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 339,
+          "name": "Legia Warszawa",
+          "logo": "https://media.api-sports.io/football/teams/339.png",
+          "winner": null
+        },
+        "away": {
+          "id": 347,
+          "name": "Lech Poznan",
+          "logo": "https://media.api-sports.io/football/teams/347.png",
           "winner": null
         }
       },

@@ -16,6 +16,37 @@ load_dotenv()
 # Create necessary folders
 Path("data/live").mkdir(parents=True, exist_ok=True)
 Path("cache").mkdir(parents=True, exist_ok=True)
+Path("utils/cron/cache").mkdir(parents=True, exist_ok=True)
+
+# Cache directories
+MAIN_CACHE_DIR = Path("cache")
+CRON_CACHE_DIR = Path("utils/cron/cache")
+
+# Function to ensure both cache directories are synchronized
+def update_both_caches(filename, data):
+    """Write data to both main and cron cache directories"""
+    for cache_dir in [MAIN_CACHE_DIR, CRON_CACHE_DIR]:
+        file_path = cache_dir / filename
+        try:
+            with open(file_path, 'w') as f:
+                json.dump(data, f)
+            print(f"✅ Updated {file_path}")
+        except Exception as e:
+            print(f"❌ Error updating {file_path}: {e}")
+
+# Clear old fixture files before fetching new ones
+def clear_fixture_cache():
+    """Remove old fixture files to avoid stale data"""
+    for cache_dir in [MAIN_CACHE_DIR, CRON_CACHE_DIR]:
+        try:
+            for fixture_file in cache_dir.glob("fixtures_*.json"):
+                try:
+                    fixture_file.unlink()
+                    print(f"🗑️ Removed old fixture file: {fixture_file}")
+                except Exception as e:
+                    print(f"⚠️ Failed to remove {fixture_file}: {e}")
+        except Exception as e:
+            print(f"⚠️ Error clearing fixture cache in {cache_dir}: {e}")
 
 # Supported leagues with API-Football league IDs
 SUPPORTED_LEAGUES = {
@@ -238,14 +269,15 @@ def fetch_fixtures():
 
     if not active_leagues:
         print("⚠️ No active leagues found.")
-        return []
-
-    # Get current time in UTC
+        return []    # Get current time in UTC
     now_utc = datetime.now(timezone.utc)
     today = now_utc.date()
     tomorrow = (now_utc + timedelta(days=1)).date()
     
     print(f"📅 Date Range for Fixtures: {today} to {tomorrow}")
+    
+    # Clear any old fixture caches
+    clear_fixture_cache()
 
     all_fixtures = []
 
@@ -266,9 +298,7 @@ def fetch_fixtures():
             
             # Get the latest active season for the league
             latest_season = max(season["seasons"][-1]["year"] for season in season_data if season["seasons"])
-            print(f"🔍 Detected latest season for league {league_id}: {latest_season}")
-
-            # Fetch fixtures only for today and tomorrow in the latest season
+            print(f"🔍 Detected latest season for league {league_id}: {latest_season}")            # Fetch fixtures only for today and tomorrow in the latest season
             response = retry_request(
                 "https://v3.football.api-sports.io/fixtures",
                 headers={"x-apisports-key": api_key},
@@ -280,9 +310,9 @@ def fetch_fixtures():
                 }
             )
             response_data = response.json()
-            print(f"...response {response_data}")
-            with open(f"cache/fixtures_{league_id}.json", "w") as f:
-                json.dump(response_data, f, indent=2)
+            
+            # Save to both cache locations
+            update_both_caches(f"fixtures_{league_id}.json", response_data)
             
             fixtures_for_league = response_data.get("response", [])
             if fixtures_for_league:

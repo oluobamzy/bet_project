@@ -7,7 +7,7 @@ import pandas as pd
 from discord.ext import commands
 from dotenv import load_dotenv
 from discord import app_commands
-from predict import predict_bet, predict_bet_tomorrow
+from predict import predict_bet, predict_bet_tomorrow, format_predictions_for_discord
 from utils.prediction_tracker import PredictionTracker
 from utils.explainer import PredictionExplainer
 from utils.model_monitor import trigger_retraining
@@ -134,10 +134,20 @@ async def send_daily_predictions():
 
 def daily_job():
     """Send tomorrow's predictions to all configured guild channels and subscribed users."""
-    prediction = predict_bet_tomorrow()
-    if not prediction.strip():
-        logging.warning("⚠️ No prediction to send.")
-        return
+    predictions = predict_bet_tomorrow()
+    
+    # Handle both possible return types from predict_bet_tomorrow
+    if isinstance(predictions, str):
+        if not predictions.strip():
+            logging.warning("⚠️ No prediction to send.")
+            return
+        prediction = predictions
+    else:
+        if not predictions:
+            logging.warning("⚠️ No prediction to send.")
+            return
+        # Format the predictions for Discord
+        prediction = format_predictions_for_discord(predictions, is_tomorrow=True)
 
     # Send to configured guild channels
     for guild in bot.guilds:
@@ -216,11 +226,17 @@ async def bet_command(interaction: discord.Interaction, league: str = "EPL"):
 
     await interaction.response.defer(thinking=True)
     try:
-        prediction = predict_bet(league)
-        await interaction.followup.send(
-            f"🔮 **Predictions for {SUPPORTED_LEAGUES[league]}:**\n{prediction}"
-        )
+        predictions = predict_bet(league)
+        if isinstance(predictions, str):
+            # It's an error message
+            await interaction.followup.send(predictions)
+            return
+            
+        # Format the predictions for Discord
+        formatted_message = format_predictions_for_discord(predictions, is_tomorrow=False)
+        await interaction.followup.send(formatted_message)
     except Exception as e:
+        logging.error(f"Prediction error: {e}")
         await interaction.followup.send(f"❌ Prediction failed: {e}", ephemeral=True)
 
 @bot.tree.command(name="bet_today", description="Get today's match predictions for a specific league.")
@@ -234,11 +250,17 @@ async def bet_today_command(interaction: discord.Interaction, league: str = "EPL
 
     await interaction.response.defer(thinking=True)
     try:
-        prediction = predict_bet(league)
-        await interaction.followup.send(
-            f"🔮 **Today's Predictions for {SUPPORTED_LEAGUES[league]}:**\n{prediction}"
-        )
+        predictions = predict_bet(league)
+        if isinstance(predictions, str):
+            # It's an error message
+            await interaction.followup.send(predictions)
+            return
+            
+        # Format the predictions for Discord
+        formatted_message = format_predictions_for_discord(predictions, is_tomorrow=False)
+        await interaction.followup.send(formatted_message)
     except Exception as e:
+        logging.error(f"Prediction error: {e}")
         await interaction.followup.send(f"❌ Prediction failed: {e}", ephemeral=True)
         
 @bot.tree.command(name="bet_tomorrow", description="Get tomorrow's match predictions for a specific league.")
@@ -252,11 +274,17 @@ async def bet_tomorrow_command(interaction: discord.Interaction, league: str = "
 
     await interaction.response.defer(thinking=True)
     try:
-        prediction = predict_bet_tomorrow(league)
-        await interaction.followup.send(
-            f"📅 **Tomorrow's Predictions for {SUPPORTED_LEAGUES[league]}:**\n{prediction}"
-        )
+        predictions = predict_bet_tomorrow(league)
+        if isinstance(predictions, str):
+            # It's an error message
+            await interaction.followup.send(predictions)
+            return
+            
+        # Format the predictions for Discord
+        formatted_message = format_predictions_for_discord(predictions, is_tomorrow=True)
+        await interaction.followup.send(formatted_message)
     except Exception as e:
+        logging.error(f"Prediction error: {e}")
         await interaction.followup.send(f"❌ Prediction failed: {e}", ephemeral=True)
 
 @bot.tree.command(name="leagues", description="Show all available leagues.")
