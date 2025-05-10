@@ -1,0 +1,254 @@
+import shap
+import numpy as np
+import matplotlib.pyplot as plt
+from pathlib import Path
+import joblib
+import logging
+import base64
+from io import BytesIO
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+
+class PredictionExplainer:
+    def __init__(self):
+        """Initialize the prediction explainer."""
+        self.models = {}
+        self.explainers = {}
+        self.feature_names = {}
+        self.output_dir = Path("data/explanations")
+        self.output_dir.mkdir(exist_ok=True, parents=True)
+        
+        logging.info(f"✅ Prediction explainer initialized")
+        
+    def _load_model(self, league_name=None):
+        """Load the appropriate model."""
+        models_folder = Path("models")
+        
+        # Determine model filename
+        if league_name:
+            model_path = models_folder / f"xgboost_model_{league_name}.pkl"
+            feature_path = models_folder / f"feature_list_{league_name}.pkl"
+            
+            if not model_path.exists():
+                logging.info(f"⚠️ No specific model for {league_name}, using general model")
+                model_path = models_folder / "xgboost_model.pkl"
+                feature_path = models_folder / "feature_list.pkl"
+        else:
+            model_path = models_folder / "xgboost_model.pkl"
+            feature_path = models_folder / "feature_list.pkl"
+        
+        model_key = league_name if league_name else "general"
+        
+        # Check if model is already loaded
+        if model_key in self.models:
+            return self.models[model_key], self.feature_names.get(model_key, [])
+        
+        # Load the model
+        try:
+            model = joblib.load(model_path)
+            
+            # Load feature names
+            features = []
+            if feature_path.exists():
+                feature_data = joblib.load(feature_path)
+                features = feature_data.get("features", [])
+                
+            # Cache the model and feature names
+            self.models[model_key] = model
+            self.feature_names[model_key] = features
+            
+            return model, features
+            
+        except Exception as e:
+            logging.error(f"❌ Failed to load model: {e}")
+            raise
+            
+    def _get_explainer(self, model_key):
+        """Get or create a SHAP explainer for the model."""
+        if model_key in self.explainers:
+            return self.explainers[model_key]
+            
+        try:
+            model = self.models[model_key]
+            
+            # Create a TreeExplainer for XGBoost models
+            explainer = shap.TreeExplainer(model)
+            self.explainers[model_key] = explainer
+            
+            return explainer
+            
+        except Exception as e:
+            logging.error(f"❌ Failed to create explainer: {e}")
+            raise
+    
+    def explain_prediction(self, fixture_data, league_name=None):
+        """
+        Generate an explanation for a prediction.
+        
+        Args:
+            fixture_data: Dictionary containing match data and features
+            league_name: Optional league name for league-specific model
+            
+        Returns:
+            Dictionary with explanation data and visualization
+        """
+        try:
+            # Extract required data
+            home_team = fixture_data["home"]
+            away_team = fixture_data["away"]
+            features = np.array(fixture_data["features"]).reshape(1, -1)
+            
+            # Load appropriate model
+            model_key = league_name if league_name else "general"
+            model, feature_names = self._load_model(league_name)
+            
+            if not feature_names:
+                feature_names = [
+                    "Home Odds", "Away Odds", "Draw Odds", 
+                    "Home Form", "Away Form", "H2H Win Rate"
+                ]
+            
+            # Make prediction
+            pred_probs = model.predict_proba(features)[0]
+            pred_class = pred_probs.argmax()
+            confidence = pred_probs[pred_class] * 100
+            
+            # Get SHAP values
+            explainer = self._get_explainer(model_key)
+            shap_values = explainer.shap_values(features)
+            
+            # For multi-class models, shap_values is a list of arrays for each class
+            # We want the values for the predicted class
+            if isinstance(shap_values, list):
+                class_shap_values = shap_values[pred_class][0]
+            else:
+                class_shap_values = shap_values[0]
+            
+            # Create explanation data
+            outcome_labels = ["Home Win", "Draw", "Away Win"]
+            explanation = {
+                "match": f"{home_team} vs {away_team}",
+                "prediction": outcome_labels[pred_class],
+                "confidence": float(confidence),
+                "feature_importance": {}
+            }
+            
+            # Add feature importance data
+            for i, name in enumerate(feature_names):
+                explanation["feature_importance"][name] = float(class_shap_values[i])
+            
+            # Generate visualization
+            fig = plt.figure(figsize=(10, 6))
+            
+            # Create bar chart of feature importance
+            feat_importance = sorted(zip(feature_names, class_shap_values), key=lambda x: abs(x[1]), reverse=True)
+            names, values = zip(*feat_importance)
+            
+            colors = ['#2ecc71' if x > 0 else '#e74c3c' for x in values]
+            plt.barh(range(len(names)), [abs(x) for x in values], color=colors)
+            plt.yticks(range(len(names)), names)
+            
+            # Add title and labels
+            plt.title(f"Factors Influencing {outcome_labels[pred_class]} Prediction ({confidence:.1f}% Confidence)")
+            plt.xlabel("Impact on Prediction")
+            
+            # Add a legend
+            import matplotlib.patches as mpatches
+            positive = mpatches.Patch(color='#2ecc71', label='Favors Prediction')
+            negative = mpatches.Patch(color='#e74c3c', label='Against Prediction')
+            plt.legend(handles=[positive, negative], loc='lower right')
+            
+            # Save to buffer
+            buf = BytesIO()
+            plt.savefig(buf, format='png', bbox_inches='tight')
+            plt.close()
+            
+            # Convert to base64
+            buf.seek(0)
+            img_str = base64.b64encode(buf.read()).decode('utf-8')
+            
+            # Add visualization to explanation
+            explanation["visualization_base64"] = img_str
+            
+            # Save explanation to file (optional)
+            timestamp = fixture_data.get("date", "unknown").replace("-", "")
+            output_file = self.output_dir / f"explanation_{home_team}_{away_team}_{timestamp}.html"
+            
+            with open(output_file, 'w') as f:
+                f.write(f"""
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Prediction Explanation: {home_team} vs {away_team}</title>
+                    <style>
+                        body {{ font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }}
+                        h1 {{ color: #2c3e50; }}
+                        .prediction {{ font-size: 24px; font-weight: bold; margin-bottom: 20px; }}
+                        .confidence {{ font-size: 18px; margin-bottom: 30px; color: #7f8c8d; }}
+                        .explanation {{ margin-top: 30px; }}
+                        img {{ max-width: 100%; height: auto; }}
+                    </style>
+                </head>
+                <body>
+                    <h1>{home_team} vs {away_team}</h1>
+                    <div class="prediction">Prediction: {outcome_labels[pred_class]}</div>
+                    <div class="confidence">Confidence: {confidence:.1f}%</div>
+                    <div class="explanation">
+                        <h2>What factors influenced this prediction?</h2>
+                        <img src="data:image/png;base64,{img_str}" alt="Feature Importance Chart">
+                        <h3>Detailed Feature Impact:</h3>
+                        <ul>
+                """)
+                
+                # Add details for each feature
+                for name, value in feat_importance:
+                    impact = "increases" if value > 0 else "decreases"
+                    f.write(f"<li><strong>{name}</strong>: {impact} the likelihood of a {outcome_labels[pred_class]}</li>\n")
+                
+                f.write(f"""
+                        </ul>
+                    </div>
+                </body>
+                </html>
+                """)
+            
+            logging.info(f"✅ Generated explanation for {home_team} vs {away_team}")
+            return explanation
+            
+        except Exception as e:
+            logging.error(f"❌ Failed to explain prediction: {e}")            return {
+                "error": str(e),
+                "match": f"{fixture_data.get('home', 'Unknown')} vs {fixture_data.get('away', 'Unknown')}"
+            }
+            
+    def explain_match_prediction(self, home_team, away_team, features, league_name=""):
+        """Simplified interface to explain a match prediction."""
+        fixture_data = {
+            "home": home_team,
+            "away": away_team,
+            "features": features,
+            "date": "today"
+        }
+        return self.explain_prediction(fixture_data, league_name)
+        
+if __name__ == "__main__":
+    # Example usage
+    explainer = PredictionExplainer()
+    
+    # Example fixture data
+    fixture = {
+        "home": "Manchester City",
+        "away": "Liverpool",
+        "features": [1.5, 3.0, 5.0, 0.8, 0.7, 0.6],
+        "date": "2023-05-10"
+    }
+    
+    explanation = explainer.explain_prediction(fixture)
+    print(f"Prediction: {explanation['prediction']} with {explanation['confidence']:.1f}% confidence")
+    print("Feature importance:")
+    for feature, importance in explanation["feature_importance"].items():
+        print(f"  {feature}: {importance:.4f}")

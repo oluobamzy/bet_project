@@ -3,11 +3,11 @@
   "parameters": {
     "league": "179",
     "season": "2024",
-    "from": "2025-05-08",
-    "to": "2025-05-09"
+    "from": "2025-05-09",
+    "to": "2025-05-10"
   },
   "errors": [],
-  "results": 1,
+  "results": 6,
   "paging": {
     "current": 1,
     "total": 1
@@ -57,6 +57,356 @@
           "id": 901,
           "name": "Partick",
           "logo": "https://media.api-sports.io/football/teams/901.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1371476,
+        "referee": "C. Steven",
+        "timezone": "UTC",
+        "date": "2025-05-10T14:00:00+00:00",
+        "timestamp": 1746885600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 1386,
+          "name": "Celtic Park",
+          "city": "Glasgow"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 179,
+        "name": "Premiership",
+        "country": "Scotland",
+        "logo": "https://media.api-sports.io/football/leagues/179.png",
+        "flag": "https://media.api-sports.io/flags/gb-sct.svg",
+        "season": 2024,
+        "round": "2nd Phase - 3",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 247,
+          "name": "Celtic",
+          "logo": "https://media.api-sports.io/football/teams/247.png",
+          "winner": null
+        },
+        "away": {
+          "id": 249,
+          "name": "Hibernian",
+          "logo": "https://media.api-sports.io/football/teams/249.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1371479,
+        "referee": "D. Robertson",
+        "timezone": "UTC",
+        "date": "2025-05-10T14:00:00+00:00",
+        "timestamp": 1746885600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 19215,
+          "name": "The BBSP Stadium Rugby Park",
+          "city": "Kilmarnock"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 179,
+        "name": "Premiership",
+        "country": "Scotland",
+        "logo": "https://media.api-sports.io/football/leagues/179.png",
+        "flag": "https://media.api-sports.io/flags/gb-sct.svg",
+        "season": 2024,
+        "round": "2nd Phase - 3",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 250,
+          "name": "Kilmarnock",
+          "logo": "https://media.api-sports.io/football/teams/250.png",
+          "winner": null
+        },
+        "away": {
+          "id": 253,
+          "name": "Dundee",
+          "logo": "https://media.api-sports.io/football/teams/253.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1371478,
+        "referee": "R. Lee",
+        "timezone": "UTC",
+        "date": "2025-05-10T14:00:00+00:00",
+        "timestamp": 1746885600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 1393,
+          "name": "Tynecastle Park",
+          "city": "Edinburgh"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 179,
+        "name": "Premiership",
+        "country": "Scotland",
+        "logo": "https://media.api-sports.io/football/leagues/179.png",
+        "flag": "https://media.api-sports.io/flags/gb-sct.svg",
+        "season": 2024,
+        "round": "2nd Phase - 3",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 254,
+          "name": "Heart Of Midlothian",
+          "logo": "https://media.api-sports.io/football/teams/254.png",
+          "winner": null
+        },
+        "away": {
+          "id": 256,
+          "name": "Motherwell",
+          "logo": "https://media.api-sports.io/football/teams/256.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1371480,
+        "referee": "J. Beaton",
+        "timezone": "UTC",
+        "date": "2025-05-10T14:00:00+00:00",
+        "timestamp": 1746885600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 1403,
+          "name": "McDiarmid Park",
+          "city": "Perth"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 179,
+        "name": "Premiership",
+        "country": "Scotland",
+        "logo": "https://media.api-sports.io/football/leagues/179.png",
+        "flag": "https://media.api-sports.io/flags/gb-sct.svg",
+        "season": 2024,
+        "round": "2nd Phase - 3",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 258,
+          "name": "ST Johnstone",
+          "logo": "https://media.api-sports.io/football/teams/258.png",
+          "winner": null
+        },
+        "away": {
+          "id": 902,
+          "name": "Ross County",
+          "logo": "https://media.api-sports.io/football/teams/902.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1371477,
+        "referee": "S. McLean",
+        "timezone": "UTC",
+        "date": "2025-05-10T14:00:00+00:00",
+        "timestamp": 1746885600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": null,
+          "name": "CalForth Construction Arena at Tannadice Park",
+          "city": "Dundee"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 179,
+        "name": "Premiership",
+        "country": "Scotland",
+        "logo": "https://media.api-sports.io/football/leagues/179.png",
+        "flag": "https://media.api-sports.io/flags/gb-sct.svg",
+        "season": 2024,
+        "round": "2nd Phase - 3",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 1386,
+          "name": "Dundee Utd",
+          "logo": "https://media.api-sports.io/football/teams/1386.png",
+          "winner": null
+        },
+        "away": {
+          "id": 251,
+          "name": "ST Mirren",
+          "logo": "https://media.api-sports.io/football/teams/251.png",
           "winner": null
         }
       },

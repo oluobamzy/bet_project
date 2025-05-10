@@ -3,11 +3,11 @@
   "parameters": {
     "league": "78",
     "season": "2024",
-    "from": "2025-05-08",
-    "to": "2025-05-09"
+    "from": "2025-05-09",
+    "to": "2025-05-10"
   },
   "errors": [],
-  "results": 1,
+  "results": 6,
   "paging": {
     "current": 1,
     "total": 1
@@ -16,7 +16,7 @@
     {
       "fixture": {
         "id": 1224268,
-        "referee": null,
+        "referee": "M. J\u00f6llenbeck",
         "timezone": "UTC",
         "date": "2025-05-09T18:30:00+00:00",
         "timestamp": 1746815400,
@@ -57,6 +57,356 @@
           "id": 167,
           "name": "1899 Hoffenheim",
           "logo": "https://media.api-sports.io/football/teams/167.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1224267,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-10T13:30:00+00:00",
+        "timestamp": 1746883800,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 755,
+          "name": "Weserstadion",
+          "city": "Bremen"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 78,
+        "name": "Bundesliga",
+        "country": "Germany",
+        "logo": "https://media.api-sports.io/football/leagues/78.png",
+        "flag": "https://media.api-sports.io/flags/de.svg",
+        "season": 2024,
+        "round": "Regular Season - 33",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 162,
+          "name": "Werder Bremen",
+          "logo": "https://media.api-sports.io/football/teams/162.png",
+          "winner": null
+        },
+        "away": {
+          "id": 173,
+          "name": "RB Leipzig",
+          "logo": "https://media.api-sports.io/football/teams/173.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1224270,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-10T13:30:00+00:00",
+        "timestamp": 1746883800,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 751,
+          "name": "Vonovia Ruhrstadion",
+          "city": "Bochum"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 78,
+        "name": "Bundesliga",
+        "country": "Germany",
+        "logo": "https://media.api-sports.io/football/leagues/78.png",
+        "flag": "https://media.api-sports.io/flags/de.svg",
+        "season": 2024,
+        "round": "Regular Season - 33",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 176,
+          "name": "VfL Bochum",
+          "logo": "https://media.api-sports.io/football/teams/176.png",
+          "winner": null
+        },
+        "away": {
+          "id": 164,
+          "name": "FSV Mainz 05",
+          "logo": "https://media.api-sports.io/football/teams/164.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1224269,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-10T13:30:00+00:00",
+        "timestamp": 1746883800,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 748,
+          "name": "Stadion An der Alten F\u00f6rsterei",
+          "city": "Berlin"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 78,
+        "name": "Bundesliga",
+        "country": "Germany",
+        "logo": "https://media.api-sports.io/football/leagues/78.png",
+        "flag": "https://media.api-sports.io/flags/de.svg",
+        "season": 2024,
+        "round": "Regular Season - 33",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 182,
+          "name": "Union Berlin",
+          "logo": "https://media.api-sports.io/football/teams/182.png",
+          "winner": null
+        },
+        "away": {
+          "id": 180,
+          "name": "1. FC Heidenheim",
+          "logo": "https://media.api-sports.io/football/teams/180.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1224271,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-10T13:30:00+00:00",
+        "timestamp": 1746883800,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 725,
+          "name": "Holstein-Stadion",
+          "city": "Kiel"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 78,
+        "name": "Bundesliga",
+        "country": "Germany",
+        "logo": "https://media.api-sports.io/football/leagues/78.png",
+        "flag": "https://media.api-sports.io/flags/de.svg",
+        "season": 2024,
+        "round": "Regular Season - 33",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 191,
+          "name": "Holstein Kiel",
+          "logo": "https://media.api-sports.io/football/teams/191.png",
+          "winner": null
+        },
+        "away": {
+          "id": 160,
+          "name": "SC Freiburg",
+          "logo": "https://media.api-sports.io/football/teams/160.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1224265,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-10T16:30:00+00:00",
+        "timestamp": 1746894600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 700,
+          "name": "Allianz Arena",
+          "city": "M\u00fcnchen"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 78,
+        "name": "Bundesliga",
+        "country": "Germany",
+        "logo": "https://media.api-sports.io/football/leagues/78.png",
+        "flag": "https://media.api-sports.io/flags/de.svg",
+        "season": 2024,
+        "round": "Regular Season - 33",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 157,
+          "name": "Bayern M\u00fcnchen",
+          "logo": "https://media.api-sports.io/football/teams/157.png",
+          "winner": null
+        },
+        "away": {
+          "id": 163,
+          "name": "Borussia M\u00f6nchengladbach",
+          "logo": "https://media.api-sports.io/football/teams/163.png",
           "winner": null
         }
       },

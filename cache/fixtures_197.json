@@ -3,14 +3,365 @@
   "parameters": {
     "league": "197",
     "season": "2024",
-    "from": "2025-05-08",
-    "to": "2025-05-09"
+    "from": "2025-05-09",
+    "to": "2025-05-10"
   },
   "errors": [],
-  "results": 0,
+  "results": 5,
   "paging": {
     "current": 1,
     "total": 1
   },
-  "response": []
+  "response": [
+    {
+      "fixture": {
+        "id": 1360739,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-10T14:00:00+00:00",
+        "timestamp": 1746885600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 771,
+          "name": "Dimotiko Athlitiko Kentro Lamias",
+          "city": "Lamia"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 197,
+        "name": "Super League 1",
+        "country": "Greece",
+        "logo": "https://media.api-sports.io/football/leagues/197.png",
+        "flag": "https://media.api-sports.io/flags/gr.svg",
+        "season": 2024,
+        "round": "Relegation Round - 7",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 956,
+          "name": "Lamia",
+          "logo": "https://media.api-sports.io/football/teams/956.png",
+          "winner": null
+        },
+        "away": {
+          "id": 2099,
+          "name": "Panserraikos",
+          "logo": "https://media.api-sports.io/football/teams/2099.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1360738,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-10T14:00:00+00:00",
+        "timestamp": 1746885600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 773,
+          "name": "Stadio Levadias",
+          "city": "Levadia"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 197,
+        "name": "Super League 1",
+        "country": "Greece",
+        "logo": "https://media.api-sports.io/football/leagues/197.png",
+        "flag": "https://media.api-sports.io/flags/gr.svg",
+        "season": 2024,
+        "round": "Relegation Round - 7",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 957,
+          "name": "Levadiakos",
+          "logo": "https://media.api-sports.io/football/teams/957.png",
+          "winner": null
+        },
+        "away": {
+          "id": 2095,
+          "name": "Kallithea",
+          "logo": "https://media.api-sports.io/football/teams/2095.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1360718,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-10T15:30:00+00:00",
+        "timestamp": 1746891000,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 765,
+          "name": "Stadio Harilaou Kle\u00e1nthis Vikel\u00eddis",
+          "city": "Thessalon\u00edki"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 197,
+        "name": "Super League 1",
+        "country": "Greece",
+        "logo": "https://media.api-sports.io/football/leagues/197.png",
+        "flag": "https://media.api-sports.io/flags/gr.svg",
+        "season": 2024,
+        "round": "Conference League Play-off Group - 6",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 1123,
+          "name": "Aris Thessalonikis",
+          "logo": "https://media.api-sports.io/football/teams/1123.png",
+          "winner": null
+        },
+        "away": {
+          "id": 955,
+          "name": "Asteras Tripolis",
+          "logo": "https://media.api-sports.io/football/teams/955.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1360719,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-10T16:15:00+00:00",
+        "timestamp": 1746893700,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 7804,
+          "name": "Stadio Peristeriou",
+          "city": "Athens"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 197,
+        "name": "Super League 1",
+        "country": "Greece",
+        "logo": "https://media.api-sports.io/football/leagues/197.png",
+        "flag": "https://media.api-sports.io/flags/gr.svg",
+        "season": 2024,
+        "round": "Conference League Play-off Group - 6",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 12260,
+          "name": "Atromitos",
+          "logo": "https://media.api-sports.io/football/teams/12260.png",
+          "winner": null
+        },
+        "away": {
+          "id": 1124,
+          "name": "OFI",
+          "logo": "https://media.api-sports.io/football/teams/1124.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1360740,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-10T17:00:00+00:00",
+        "timestamp": 1746896400,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 778,
+          "name": "Stadio Panetolikou",
+          "city": "Agrinio"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 197,
+        "name": "Super League 1",
+        "country": "Greece",
+        "logo": "https://media.api-sports.io/football/leagues/197.png",
+        "flag": "https://media.api-sports.io/flags/gr.svg",
+        "season": 2024,
+        "round": "Relegation Round - 7",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 949,
+          "name": "Panetolikos",
+          "logo": "https://media.api-sports.io/football/teams/949.png",
+          "winner": null
+        },
+        "away": {
+          "id": 2110,
+          "name": "Volos NFC",
+          "logo": "https://media.api-sports.io/football/teams/2110.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    }
+  ]
 }

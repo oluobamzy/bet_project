@@ -3,8 +3,8 @@
   "parameters": {
     "league": "208",
     "season": "2024",
-    "from": "2025-05-08",
-    "to": "2025-05-09"
+    "from": "2025-05-09",
+    "to": "2025-05-10"
   },
   "errors": [],
   "results": 4,
@@ -16,7 +16,7 @@
     {
       "fixture": {
         "id": 1325438,
-        "referee": null,
+        "referee": "M. Drmic",
         "timezone": "UTC",
         "date": "2025-05-09T17:30:00+00:00",
         "timestamp": 1746811800,
@@ -86,7 +86,7 @@
     {
       "fixture": {
         "id": 1325439,
-        "referee": null,
+        "referee": "J. von Mandach",
         "timezone": "UTC",
         "date": "2025-05-09T17:30:00+00:00",
         "timestamp": 1746811800,
@@ -156,7 +156,7 @@
     {
       "fixture": {
         "id": 1325440,
-        "referee": null,
+        "referee": "H. Sanli",
         "timezone": "UTC",
         "date": "2025-05-09T17:30:00+00:00",
         "timestamp": 1746811800,
@@ -226,7 +226,7 @@
     {
       "fixture": {
         "id": 1325437,
-        "referee": null,
+        "referee": "A. Kanagasingam",
         "timezone": "UTC",
         "date": "2025-05-09T18:15:00+00:00",
         "timestamp": 1746814500,

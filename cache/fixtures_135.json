@@ -3,11 +3,11 @@
   "parameters": {
     "league": "135",
     "season": "2024",
-    "from": "2025-05-08",
-    "to": "2025-05-09"
+    "from": "2025-05-09",
+    "to": "2025-05-10"
   },
   "errors": [],
-  "results": 1,
+  "results": 4,
   "paging": {
     "current": 1,
     "total": 1
@@ -57,6 +57,216 @@
           "id": 500,
           "name": "Bologna",
           "logo": "https://media.api-sports.io/football/teams/500.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1223946,
+        "referee": "F. Fourneau",
+        "timezone": "UTC",
+        "date": "2025-05-10T13:00:00+00:00",
+        "timestamp": 1746882000,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 892,
+          "name": "Stadio Giuseppe Sinigaglia",
+          "city": "Como"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 135,
+        "name": "Serie A",
+        "country": "Italy",
+        "logo": "https://media.api-sports.io/football/leagues/135.png",
+        "flag": "https://media.api-sports.io/flags/it.svg",
+        "season": 2024,
+        "round": "Regular Season - 36",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 895,
+          "name": "Como",
+          "logo": "https://media.api-sports.io/football/teams/895.png",
+          "winner": null
+        },
+        "away": {
+          "id": 490,
+          "name": "Cagliari",
+          "logo": "https://media.api-sports.io/football/teams/490.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1223949,
+        "referee": "D. Massa",
+        "timezone": "UTC",
+        "date": "2025-05-10T16:00:00+00:00",
+        "timestamp": 1746892800,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 910,
+          "name": "Stadio Olimpico",
+          "city": "Roma"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 135,
+        "name": "Serie A",
+        "country": "Italy",
+        "logo": "https://media.api-sports.io/football/leagues/135.png",
+        "flag": "https://media.api-sports.io/flags/it.svg",
+        "season": 2024,
+        "round": "Regular Season - 36",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 487,
+          "name": "Lazio",
+          "logo": "https://media.api-sports.io/football/teams/487.png",
+          "winner": null
+        },
+        "away": {
+          "id": 496,
+          "name": "Juventus",
+          "logo": "https://media.api-sports.io/football/teams/496.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1223947,
+        "referee": "M. Fabbri",
+        "timezone": "UTC",
+        "date": "2025-05-10T18:45:00+00:00",
+        "timestamp": 1746902700,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 20109,
+          "name": "Stadio Carlo Castellani \u2013 Computer Gross Arena",
+          "city": "Empoli"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 135,
+        "name": "Serie A",
+        "country": "Italy",
+        "logo": "https://media.api-sports.io/football/leagues/135.png",
+        "flag": "https://media.api-sports.io/flags/it.svg",
+        "season": 2024,
+        "round": "Regular Season - 36",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 511,
+          "name": "Empoli",
+          "logo": "https://media.api-sports.io/football/teams/511.png",
+          "winner": null
+        },
+        "away": {
+          "id": 523,
+          "name": "Parma",
+          "logo": "https://media.api-sports.io/football/teams/523.png",
           "winner": null
         }
       },

@@ -3,11 +3,11 @@
   "parameters": {
     "league": "144",
     "season": "2024",
-    "from": "2025-05-08",
-    "to": "2025-05-09"
+    "from": "2025-05-09",
+    "to": "2025-05-10"
   },
   "errors": [],
-  "results": 1,
+  "results": 5,
   "paging": {
     "current": 1,
     "total": 1
@@ -57,6 +57,286 @@
           "id": 261,
           "name": "KVC Westerlo",
           "logo": "https://media.api-sports.io/football/teams/261.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1361768,
+        "referee": "B. Put",
+        "timezone": "UTC",
+        "date": "2025-05-10T14:00:00+00:00",
+        "timestamp": 1746885600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 181,
+          "name": "Olympisch Stadion",
+          "city": "Anvers"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 144,
+        "name": "Jupiler Pro League",
+        "country": "Belgium",
+        "logo": "https://media.api-sports.io/football/leagues/144.png",
+        "flag": "https://media.api-sports.io/flags/be.svg",
+        "season": 2024,
+        "round": "Relegation Round - 6",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 263,
+          "name": "Beerschot Wilrijk",
+          "logo": "https://media.api-sports.io/football/teams/263.png",
+          "winner": null
+        },
+        "away": {
+          "id": 741,
+          "name": "Cercle Brugge",
+          "logo": "https://media.api-sports.io/football/teams/741.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1361769,
+        "referee": "J. Vergoote",
+        "timezone": "UTC",
+        "date": "2025-05-10T14:00:00+00:00",
+        "timestamp": 1746885600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 182,
+          "name": "Guldensporenstadion",
+          "city": "Kortrijk"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 144,
+        "name": "Jupiler Pro League",
+        "country": "Belgium",
+        "logo": "https://media.api-sports.io/football/leagues/144.png",
+        "flag": "https://media.api-sports.io/flags/be.svg",
+        "season": 2024,
+        "round": "Relegation Round - 6",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 734,
+          "name": "Kortrijk",
+          "logo": "https://media.api-sports.io/football/teams/734.png",
+          "winner": null
+        },
+        "away": {
+          "id": 735,
+          "name": "St. Truiden",
+          "logo": "https://media.api-sports.io/football/teams/735.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1361792,
+        "referee": "K. Van Damme",
+        "timezone": "UTC",
+        "date": "2025-05-10T16:15:00+00:00",
+        "timestamp": 1746893700,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 20336,
+          "name": "AFAS Stadion",
+          "city": "Malines"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 144,
+        "name": "Jupiler Pro League",
+        "country": "Belgium",
+        "logo": "https://media.api-sports.io/football/leagues/144.png",
+        "flag": "https://media.api-sports.io/flags/be.svg",
+        "season": 2024,
+        "round": "Conference League Play-off Group - 8",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 266,
+          "name": "KV Mechelen",
+          "logo": "https://media.api-sports.io/football/teams/266.png",
+          "winner": null
+        },
+        "away": {
+          "id": 733,
+          "name": "Standard Liege",
+          "logo": "https://media.api-sports.io/football/teams/733.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1361749,
+        "referee": "W. Smet",
+        "timezone": "UTC",
+        "date": "2025-05-10T18:45:00+00:00",
+        "timestamp": 1746902700,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 174,
+          "name": "Lotto Park",
+          "city": "Brussel"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 144,
+        "name": "Jupiler Pro League",
+        "country": "Belgium",
+        "logo": "https://media.api-sports.io/football/leagues/144.png",
+        "flag": "https://media.api-sports.io/flags/be.svg",
+        "season": 2024,
+        "round": "Championship Round - 8",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 554,
+          "name": "Anderlecht",
+          "logo": "https://media.api-sports.io/football/teams/554.png",
+          "winner": null
+        },
+        "away": {
+          "id": 1393,
+          "name": "Union St. Gilloise",
+          "logo": "https://media.api-sports.io/football/teams/1393.png",
           "winner": null
         }
       },

@@ -3,11 +3,11 @@
   "parameters": {
     "league": "222",
     "season": "2024",
-    "from": "2025-05-08",
-    "to": "2025-05-09"
+    "from": "2025-05-09",
+    "to": "2025-05-10"
   },
   "errors": [],
-  "results": 6,
+  "results": 8,
   "paging": {
     "current": 1,
     "total": 1
@@ -407,6 +407,146 @@
           "id": 1406,
           "name": "SK Vorwarts Steyr",
           "logo": "https://media.api-sports.io/football/teams/1406.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1227243,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-10T14:00:00+00:00",
+        "timestamp": 1746885600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 12082,
+          "name": "Stadion Sankt Andr\u00e4",
+          "city": "Sankt Andr\u00e4"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 222,
+        "name": "Regionalliga - Mitte",
+        "country": "Austria",
+        "logo": "https://media.api-sports.io/football/leagues/222.png",
+        "flag": "https://media.api-sports.io/flags/at.svg",
+        "season": 2024,
+        "round": "Mitte - 26",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 17197,
+          "name": "ASK Klagenfurt",
+          "logo": "https://media.api-sports.io/football/teams/17197.png",
+          "winner": null
+        },
+        "away": {
+          "id": 8333,
+          "name": "Wildon",
+          "logo": "https://media.api-sports.io/football/teams/8333.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1227248,
+        "referee": null,
+        "timezone": "UTC",
+        "date": "2025-05-10T17:00:00+00:00",
+        "timestamp": 1746896400,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": null,
+          "name": "BLACK CREVICE - Stadion",
+          "city": "V\u00f6cklamarkt"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 222,
+        "name": "Regionalliga - Mitte",
+        "country": "Austria",
+        "logo": "https://media.api-sports.io/football/leagues/222.png",
+        "flag": "https://media.api-sports.io/flags/at.svg",
+        "season": 2024,
+        "round": "Mitte - 26",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 4964,
+          "name": "Union V\u00f6cklamarkt",
+          "logo": "https://media.api-sports.io/football/teams/4964.png",
+          "winner": null
+        },
+        "away": {
+          "id": 8250,
+          "name": "Ried II",
+          "logo": "https://media.api-sports.io/football/teams/8250.png",
           "winner": null
         }
       },

@@ -3,11 +3,11 @@
   "parameters": {
     "league": "140",
     "season": "2024",
-    "from": "2025-05-08",
-    "to": "2025-05-09"
+    "from": "2025-05-09",
+    "to": "2025-05-10"
   },
   "errors": [],
-  "results": 1,
+  "results": 6,
   "paging": {
     "current": 1,
     "total": 1
@@ -16,7 +16,7 @@
     {
       "fixture": {
         "id": 1208806,
-        "referee": null,
+        "referee": "Francisco Hern\u00e1ndez",
         "timezone": "UTC",
         "date": "2025-05-09T19:00:00+00:00",
         "timestamp": 1746817200,
@@ -57,6 +57,356 @@
           "id": 728,
           "name": "Rayo Vallecano",
           "logo": "https://media.api-sports.io/football/teams/728.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1208807,
+        "referee": "Adri\u00e1n Cordero",
+        "timezone": "UTC",
+        "date": "2025-05-10T12:00:00+00:00",
+        "timestamp": 1746878400,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 1497,
+          "name": "Estadio de Mestalla",
+          "city": "Valencia"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https://media.api-sports.io/football/leagues/140.png",
+        "flag": "https://media.api-sports.io/flags/es.svg",
+        "season": 2024,
+        "round": "Regular Season - 35",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 532,
+          "name": "Valencia",
+          "logo": "https://media.api-sports.io/football/teams/532.png",
+          "winner": null
+        },
+        "away": {
+          "id": 546,
+          "name": "Getafe",
+          "logo": "https://media.api-sports.io/football/teams/546.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1208803,
+        "referee": "Pablo Gonz\u00e1lez",
+        "timezone": "UTC",
+        "date": "2025-05-10T14:15:00+00:00",
+        "timestamp": 1746886500,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": null,
+          "name": "Estadio Abanca-Bala\u00eddos",
+          "city": "Vigo"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https://media.api-sports.io/football/leagues/140.png",
+        "flag": "https://media.api-sports.io/flags/es.svg",
+        "season": 2024,
+        "round": "Regular Season - 35",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 538,
+          "name": "Celta Vigo",
+          "logo": "https://media.api-sports.io/football/teams/538.png",
+          "winner": null
+        },
+        "away": {
+          "id": 536,
+          "name": "Sevilla",
+          "logo": "https://media.api-sports.io/football/teams/536.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1208804,
+        "referee": "Isidro D\u00edaz de Mera",
+        "timezone": "UTC",
+        "date": "2025-05-10T16:30:00+00:00",
+        "timestamp": 1746894600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 1478,
+          "name": "Estadi Municipal de Montilivi",
+          "city": "Girona"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https://media.api-sports.io/football/leagues/140.png",
+        "flag": "https://media.api-sports.io/flags/es.svg",
+        "season": 2024,
+        "round": "Regular Season - 35",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 547,
+          "name": "Girona",
+          "logo": "https://media.api-sports.io/football/teams/547.png",
+          "winner": null
+        },
+        "away": {
+          "id": 533,
+          "name": "Villarreal",
+          "logo": "https://media.api-sports.io/football/teams/533.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1208805,
+        "referee": "Juan Pulido",
+        "timezone": "UTC",
+        "date": "2025-05-10T16:30:00+00:00",
+        "timestamp": 1746894600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 19940,
+          "name": "Estadi Mallorca Son Moix",
+          "city": "Palma de Mallorca"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https://media.api-sports.io/football/leagues/140.png",
+        "flag": "https://media.api-sports.io/flags/es.svg",
+        "season": 2024,
+        "round": "Regular Season - 35",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 798,
+          "name": "Mallorca",
+          "logo": "https://media.api-sports.io/football/teams/798.png",
+          "winner": null
+        },
+        "away": {
+          "id": 720,
+          "name": "Valladolid",
+          "logo": "https://media.api-sports.io/football/teams/720.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": null,
+        "away": null
+      },
+      "score": {
+        "halftime": {
+          "home": null,
+          "away": null
+        },
+        "fulltime": {
+          "home": null,
+          "away": null
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": 1208800,
+        "referee": "Jos\u00e9 S\u00e1nchez",
+        "timezone": "UTC",
+        "date": "2025-05-10T19:00:00+00:00",
+        "timestamp": 1746903600,
+        "periods": {
+          "first": null,
+          "second": null
+        },
+        "venue": {
+          "id": 19217,
+          "name": "Riyadh Air Metropolitano",
+          "city": "Madrid"
+        },
+        "status": {
+          "long": "Not Started",
+          "short": "NS",
+          "elapsed": null,
+          "extra": null
+        }
+      },
+      "league": {
+        "id": 140,
+        "name": "La Liga",
+        "country": "Spain",
+        "logo": "https://media.api-sports.io/football/leagues/140.png",
+        "flag": "https://media.api-sports.io/flags/es.svg",
+        "season": 2024,
+        "round": "Regular Season - 35",
+        "standings": true
+      },
+      "teams": {
+        "home": {
+          "id": 530,
+          "name": "Atletico Madrid",
+          "logo": "https://media.api-sports.io/football/teams/530.png",
+          "winner": null
+        },
+        "away": {
+          "id": 548,
+          "name": "Real Sociedad",
+          "logo": "https://media.api-sports.io/football/teams/548.png",
           "winner": null
         }
       },

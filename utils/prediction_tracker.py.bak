@@ -1,0 +1,230 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.ticker import PercentFormatter
+from pathlib import Path
+import json
+from datetime import datetime, timedelta
+import logging
+from typing import Optional, Dict, Any
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+
+class PredictionTracker:
+    def __init__(self):
+        """Initialize the prediction tracker."""
+        self.history_file = Path("data/predictions_history.json")
+        self.reports_dir = Path("data/accuracy_reports")
+        self.reports_dir.mkdir(exist_ok=True, parents=True)
+        
+        # Create the history file if it doesn't exist
+        if not self.history_file.exists():
+            self.history_file.parent.mkdir(exist_ok=True)
+            with open(self.history_file, "w") as f:
+                json.dump({
+                    "predictions": [],
+                    "last_update": datetime.now().isoformat()
+                }, f)
+                
+        logging.info(f"✅ Prediction tracker initialized")
+                
+    def record_prediction(self, match_id: str, home_team: str, away_team: str, 
+                         predicted: str, confidence: float, league: str, match_date: str):
+        """Record a new prediction to the history."""
+        try:
+            with open(self.history_file, "r") as f:
+                data = json.load(f)
+                
+            # Add new prediction
+            data["predictions"].append({
+                "match_id": match_id,
+                "home_team": home_team,
+                "away_team": away_team,
+                "predicted": predicted,  # "H", "D", or "A"
+                "confidence": confidence,
+                "league": league,
+                "match_date": match_date,
+                "actual_result": None,  # Will be updated later
+                "recorded_at": datetime.now().isoformat()
+            })
+            
+            # Update the file
+            with open(self.history_file, "w") as f:
+                json.dump(data, f, indent=2)
+                
+            logging.info(f"✅ Recorded prediction for {home_team} vs {away_team}")
+            
+        except Exception as e:
+            logging.error(f"❌ Failed to record prediction: {e}")
+            
+    def update_results(self, match_id: str, actual_result: str):
+        """Update a prediction with the actual match result."""
+        try:
+            with open(self.history_file, "r") as f:
+                data = json.load(f)
+            
+            # Find the prediction entry
+            for pred in data["predictions"]:
+                if pred["match_id"] == match_id:
+                    pred["actual_result"] = actual_result
+                    pred["correct"] = pred["predicted"] == actual_result
+                    pred["updated_at"] = datetime.now().isoformat()
+                    
+                    # Update the file
+                    with open(self.history_file, "w") as f:
+                        json.dump(data, f, indent=2)
+                        
+                    logging.info(f"✅ Updated result for match {match_id}: {actual_result}")
+                    return True
+                    
+            logging.warning(f"⚠️ Match ID {match_id} not found in predictions history")
+            return False
+            
+        except Exception as e:
+            logging.error(f"❌ Failed to update result: {e}")
+            return False
+              def generate_accuracy_report(self, days: int = 30, league: Optional[str] = None):
+        """Generate accuracy report for recent predictions."""
+        try:
+            with open(self.history_file, "r") as f:
+                data = json.load(f)
+                
+            # Convert predictions to DataFrame for easier analysis
+            df = pd.DataFrame(data["predictions"])
+            if df.empty:
+                logging.warning("⚠️ No predictions available for analysis")
+                return None
+                
+            # Filter relevant data
+            df["match_date"] = pd.to_datetime(df["match_date"])
+            df["recorded_at"] = pd.to_datetime(df["recorded_at"])
+            
+            # Filter by recency
+            cutoff_date = datetime.now() - timedelta(days=days)
+            recent_df = df[df["match_date"] >= cutoff_date]
+            
+            # Filter by league if specified
+            if league:
+                recent_df = recent_df[recent_df["league"] == league]
+                
+            # Filter predictions with known results
+            results_df = recent_df[recent_df["actual_result"].notna()]
+            
+            if results_df.empty:
+                logging.warning("⚠️ No completed matches in the specified timeframe")
+                return None
+                
+            # Calculate accuracy metrics
+            accuracy = (results_df["predicted"] == results_df["actual_result"]).mean()
+            
+            # Calculate accuracy by confidence level
+            results_df["confidence_bin"] = pd.cut(
+                results_df["confidence"],
+                bins=[0, 60, 75, 100],
+                labels=["Low", "Medium", "High"]
+            )
+            
+            accuracy_by_confidence = results_df.groupby("confidence_bin").apply(
+                lambda x: (x["predicted"] == x["actual_result"]).mean()
+            ).to_dict()
+            
+            # Calculate accuracy by league
+            accuracy_by_league = results_df.groupby("league").apply(
+                lambda x: (x["predicted"] == x["actual_result"]).mean()
+            ).to_dict()
+            
+            # Calculate accuracy trend over time (weekly)
+            results_df["week"] = results_df["match_date"].dt.isocalendar().week
+            accuracy_trend = results_df.groupby("week").apply(
+                lambda x: (x["predicted"] == x["actual_result"]).mean()
+            ).to_dict()
+            
+            # Generate the report
+            report = {
+                "timestamp": datetime.now().isoformat(),
+                "period_days": days,
+                "league_filter": league,
+                "total_predictions": len(recent_df),
+                "completed_matches": len(results_df),
+                "overall_accuracy": float(accuracy),
+                "accuracy_by_confidence": accuracy_by_confidence,
+                "accuracy_by_league": accuracy_by_league,
+                "accuracy_trend": accuracy_trend
+            }
+            
+            # Save the report
+            report_file = self.reports_dir / f"accuracy_report_{datetime.now().strftime('%Y%m%d')}.json"
+            with open(report_file, "w") as f:
+                json.dump(report, f, indent=2)
+                
+            logging.info(f"✅ Generated accuracy report: {report_file}")
+            
+            # Generate visualization
+            self._create_accuracy_chart(report)
+            
+            return report
+            
+        except Exception as e:
+            logging.error(f"❌ Failed to generate accuracy report: {e}")
+            return None
+              def _create_accuracy_chart(self, report: Dict[str, Any]) -> None:
+        """Create visualization of accuracy metrics."""
+        try:
+            # Create figure with subplots
+            fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
+            
+            # Overall accuracy gauge chart
+            overall = report["overall_accuracy"] * 100
+            ax1.pie([overall, 100-overall], 
+                   colors=['#2ecc71' if overall >= 60 else '#e74c3c', '#ecf0f1'],
+                   startangle=90, 
+                   counterclock=False,
+                   wedgeprops={'width': 0.4})
+            ax1.text(0, 0, f"{overall:.1f}%", ha='center', va='center', fontsize=20)
+            ax1.set_title("Overall Prediction Accuracy")
+            
+            # Accuracy by confidence level
+            if report["accuracy_by_confidence"]:
+                confidence_levels = []
+                accuracies = []
+                for level, acc in report["accuracy_by_confidence"].items():
+                    if not pd.isna(acc):  # Filter out NaN values
+                        confidence_levels.append(level)
+                        accuracies.append(acc * 100)
+                        
+                if confidence_levels:  # Only create chart if we have data
+                    ax2.bar(confidence_levels, accuracies, color=['#3498db', '#f1c40f', '#2ecc71'])
+                    ax2.set_ylim(0, 100)
+                    ax2.set_title("Accuracy by Confidence Level")
+                    ax2.yaxis.set_major_formatter(PercentFormatter())
+                    
+                    # Add percentage labels on top of bars
+                    for i, v in enumerate(accuracies):
+                        ax2.text(i, v + 2, f"{v:.1f}%", ha='center')
+            
+            plt.tight_layout()
+            
+            # Save the chart
+            chart_file = self.reports_dir / f"accuracy_chart_{datetime.now().strftime('%Y%m%d')}.png"
+            plt.savefig(chart_file)
+            plt.close()
+            
+            logging.info(f"✅ Created accuracy chart: {chart_file}")
+            
+        except Exception as e:
+            logging.error(f"❌ Failed to create accuracy chart: {e}")
+
+if __name__ == "__main__":
+    tracker = PredictionTracker()
+    # Example usage:
+    # tracker.record_prediction("12345", "Arsenal", "Chelsea", "H", 0.75, "EPL", "2023-05-10")
+    # tracker.update_results("12345", "H")
+    report = tracker.generate_accuracy_report()
+    if report is not None:
+        print(f"Overall accuracy: {report['overall_accuracy']:.2%}")
+    else:
+        print("No report generated - insufficient data")

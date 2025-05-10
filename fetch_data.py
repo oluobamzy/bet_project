@@ -1,21 +1,40 @@
 import pandas as pd
 import numpy as np
+import logging
 from pathlib import Path
+import os
+import joblib
 from typing import Optional, List, Dict
 from datetime import datetime, timedelta
 from utils.cron.fetch_latest_data import fetch_fixtures, fetch_odds
-from typing import List, Dict
-import pandas as pd
 from datetime import datetime, timedelta, timezone
 
-
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
 # --- Load historical match data
 DATA_PATH = Path("utils/cron/data/processed/clean_matches.csv")
 
+# Load feature list for consistency validation
+FEATURE_LIST_PATH = os.path.join("models", "feature_list.pkl")
+expected_features = None
+if os.path.exists(FEATURE_LIST_PATH):
+    try:
+        with open(FEATURE_LIST_PATH, "rb") as f:
+            feature_data = joblib.load(f)
+            expected_features = feature_data.get("features", [])
+            logging.info(f"✅ Loaded expected feature list: {expected_features}")
+    except Exception as e:
+        logging.warning(f"⚠️ Failed to load feature list: {e}")
+
 try:
     df_matches = pd.read_csv(DATA_PATH, parse_dates=["date"], low_memory=False)
+    logging.info(f"✅ Loaded {len(df_matches)} historical matches for reference")
 except Exception as e:
+    logging.error(f"❌ Failed to load match data: {e}")
     raise FileNotFoundError(f"❌ Failed to load match data: {e}")
 
 # --- Helper Functions
@@ -28,6 +47,7 @@ def get_form(team_name: str, match_date: pd.Timestamp, window: int = 5) -> float
     ].sort_values("date", ascending=False).head(window)
 
     if recent_matches.empty:
+        logging.warning(f"⚠️ No recent matches found for {team_name}, using neutral form value")
         return 0.5  # fallback neutral value
 
     wins = 0
@@ -37,7 +57,9 @@ def get_form(team_name: str, match_date: pd.Timestamp, window: int = 5) -> float
         elif row["away_team"] == team_name and row["FTR"] == "A":
             wins += 1
 
-    return wins / len(recent_matches)
+    form = wins / len(recent_matches)
+    logging.info(f"📊 Form for {team_name}: {form:.2f} ({wins}/{len(recent_matches)} wins)")
+    return form
 
 
 def get_h2h_rate(home_team: str, away_team: str, match_date: pd.Timestamp, window: int = 5) -> float:
@@ -48,6 +70,7 @@ def get_h2h_rate(home_team: str, away_team: str, match_date: pd.Timestamp, windo
     ].sort_values("date", ascending=False).head(window)
 
     if h2h_matches.empty:
+        logging.warning(f"⚠️ No H2H matches found between {home_team} and {away_team}, using neutral value")
         return 0.5  # fallback neutral value
 
     home_wins = 0
@@ -57,7 +80,9 @@ def get_h2h_rate(home_team: str, away_team: str, match_date: pd.Timestamp, windo
         elif row["away_team"] == home_team and row["FTR"] == "A":
             home_wins += 1
 
-    return home_wins / len(h2h_matches)
+    h2h_rate = home_wins / len(h2h_matches)
+    logging.info(f"🤼 H2H rate for {home_team} vs {away_team}: {h2h_rate:.2f} ({home_wins}/{len(h2h_matches)} wins)")
+    return h2h_rate
 
 
 def get_historical_odds(home_team: str, away_team: str, match_date: pd.Timestamp) -> Optional[Dict[str, float]]:
@@ -91,8 +116,10 @@ def get_live_odds(home_team: str, away_team: str) -> Dict[str, float]:
         home_odds = next((o["price"] for o in h2h if o["name"] == home_team), 2.5)
         draw_odds = next((o["price"] for o in h2h if o["name"].lower() == "draw"), 3.2)
         away_odds = next((o["price"] for o in h2h if o["name"] == away_team), 2.8)
+        logging.info(f"📈 Live odds for {home_team} vs {away_team}: H={home_odds}, D={draw_odds}, A={away_odds}")
     else:
         home_odds, draw_odds, away_odds = 2.5, 3.2, 2.8  # fallback defaults
+        logging.warning(f"⚠️ No live odds found for {home_team} vs {away_team}, using default values")
 
     return {
         "home_odds": home_odds,
@@ -101,8 +128,6 @@ def get_live_odds(home_team: str, away_team: str) -> Dict[str, float]:
     }
 
 # --- MAIN function to build input features
-
-
 def fetch_fixture_inputs(league_name: str = "EPL", for_tomorrow: bool = False) -> List[Dict]:
     """
     Fetch and construct input features for upcoming fixtures in the specified league.
@@ -110,25 +135,42 @@ def fetch_fixture_inputs(league_name: str = "EPL", for_tomorrow: bool = False) -
     fixtures = fetch_fixtures()
     inputs = []
 
+    logging.info(f"🔍 Fetching fixtures for {league_name}, for_tomorrow={for_tomorrow}")
+    logging.info(f"📆 Found {len(fixtures)} total fixtures to process")
+
     # Get the current date and tomorrow's date, considering time zones
     now = datetime.now(timezone.utc)  # Use timezone-aware datetime in UTC
     today_date = now.date()
     tomorrow_date = (now + timedelta(days=1)).date()
+    
+    target_date = tomorrow_date if for_tomorrow else today_date
+    logging.info(f"📅 Target date: {target_date}")
 
+    # Define expected feature order for validation
+    expected_feature_order = [
+        "home_odds", "away_odds", "draw_odds", 
+        "home_form", "away_form", "h2h_win_rate"
+    ] if expected_features is None else expected_features
+    
+    filtered_fixtures = 0
     for fx in fixtures:
         try:
             # Filter by league name to avoid processing unnecessary fixtures
-            if league_name not in fx.get('league', {}).get('name', ''):
+            league_name_in_api = fx.get('league', {}).get('name', '')
+            if league_name not in league_name_in_api:
                 continue
             
+            filtered_fixtures += 1
             home = fx['teams']['home']['name']
             away = fx['teams']['away']['name']
             match_datetime = pd.to_datetime(fx['fixture']['date']).tz_convert('UTC')  # Convert to UTC
             match_date = match_datetime.date()
+            
+            logging.info(f"⚽ Processing fixture: {home} vs {away} on {match_date}")
 
-            # Unified date filtering logic with time zone consideration
-            target_date = tomorrow_date if for_tomorrow else today_date
+            # Filter by date
             if match_date != target_date:
+                logging.info(f"🗓️ Fixture date {match_date} does not match target date {target_date}, skipping")
                 continue
 
             # Fetch statistics for both teams
@@ -138,7 +180,7 @@ def fetch_fixture_inputs(league_name: str = "EPL", for_tomorrow: bool = False) -
                 h2h = get_h2h_rate(home, away, match_datetime) or 0.5
                 odds = get_live_odds(home, away) or {}
             except Exception as stats_err:
-                print(f"⚠️ Error fetching stats for {home} vs {away}: {stats_err}")
+                logging.error(f"❌ Error fetching stats for {home} vs {away}: {stats_err}")
                 continue
 
             # Construct feature vector with default values if missing
@@ -152,9 +194,15 @@ def fetch_fixture_inputs(league_name: str = "EPL", for_tomorrow: bool = False) -
             ]
 
             # Check for feature size correctness
-            if len(features) != 6:
-                print(f"⚠️ Feature size mismatch for {home} vs {away}. Expected 6, got {len(features)}.")
+            if len(features) != len(expected_feature_order):
+                logging.error(f"⚠️ Feature size mismatch for {home} vs {away}. Expected {len(expected_feature_order)}, got {len(features)}.")
                 continue
+
+            # Log feature values
+            feature_dict = dict(zip(expected_feature_order, features))
+            logging.info(f"📊 Features for {home} vs {away}:")
+            for name, value in feature_dict.items():
+                logging.info(f"  • {name}: {value:.3f}")
 
             # Append the valid input data
             inputs.append({
@@ -163,12 +211,15 @@ def fetch_fixture_inputs(league_name: str = "EPL", for_tomorrow: bool = False) -
                 "date": str(match_date),
                 "features": features
             })
+            logging.info(f"✅ Successfully generated prediction inputs for {home} vs {away}")
 
         except KeyError as ke:
-            print(f"⚠️ Skipped fixture due to missing key: {ke}")
+            logging.error(f"⚠️ Skipped fixture due to missing key: {ke}")
         except Exception as e:
-            print(f"⚠️ Error processing fixture {fx.get('fixture', {}).get('id', 'Unknown')}: {e}")
+            logging.error(f"❌ Error processing fixture {fx.get('fixture', {}).get('id', 'Unknown')}: {e}")
 
+    logging.info(f"✅ Successfully processed {filtered_fixtures} fixtures for {league_name}")
+    logging.info(f"✅ Generated prediction inputs for {len(inputs)} matches")
     return inputs
 
 
